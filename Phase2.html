@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Algorithmic Voyage - Phase 2: Navigation and Life Support Systems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .chapter {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .chapter h2 {
+            color: #4ecdc4;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scientist-insight {
+            background: linear-gradient(45deg, #ff6b6b20, #4ecdc420);
+            border-left: 4px solid #ff6b6b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
+
+        .context-box {
+            background: rgba(76, 205, 196, 0.1);
+            border: 1px solid #4ecdc4;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        .interactive-demo {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block pre {
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+        .python {
+            border-left: 4px solid #3776ab;
+        }
+
+        .javascript {
+            border-left: 4px solid #f7df1e;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .visualization {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .data-structure-container {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+            min-height: 100px;
+            align-items: center;
+        }
+
+        .data-element {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            min-width: 60px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .data-element.highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .data-element.success {
+            background: linear-gradient(45deg, #51e5ff, #52c4ff);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(81, 229, 255, 0.8);
+        }
+
+        .array-index {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            color: #4ecdc4;
+            font-weight: normal;
+        }
+
+        .stack-container {
+            flex-direction: column-reverse;
+            align-items: center;
+            min-height: 200px;
+            justify-content: flex-start;
+            padding-top: 50px;
+        }
+
+        .stack-element {
+            margin: 2px 0;
+            width: 120px;
+        }
+
+        .queue-container {
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+        }
+
+        .queue-pointer {
+            position: absolute;
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .front-pointer {
+            top: -30px;
+            left: 0;
+        }
+
+        .rear-pointer {
+            bottom: -30px;
+            right: 0;
+        }
+
+        .operation-log {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #e0e0e0;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .tab.active {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(76, 205, 196, 0.2);
+            color: #4ecdc4;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        .input-group input {
+            padding: 8px 12px;
+            border: 1px solid #4ecdc4;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            min-width: 120px;
+        }
+
+        .status-display {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(76, 205, 196, 0.1);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide-out {
+            animation: slideOut 0.5s ease-out;
+        }
+
+        @keyframes stackPush {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes stackPop {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+        }
+
+        .stack-push {
+            animation: stackPush 0.5s ease-out;
+        }
+
+        .stack-pop {
+            animation: stackPop 0.5s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 The Algorithmic Voyage - Phase 2</h1>
+            <h2>"Navigation and Life Support Systems"</h2>
+            <p><em>Mastering Data Structures Through Scientific Method</em></p>
+        </div>
+
+        <div style="text-align: left; margin: 30px 0;">
+                <button class="btn pulse" onclick="backtoPhase1()"><  Back to Phase 1</button>
+            </div>
+
+        <!-- Introduction -->
+        <div class="chapter">
+            <h2>🔬 Welcome to the Data Structure Laboratory</h2>
+
+            <div class="context-box">
+                <strong>Who's Our Guide?</strong> Dr. Ryland Grace is a fictional scientist from Andy Weir's novel
+                "Project Hail Mary." He's a former middle school science teacher turned astronaut who uses methodical
+                problem-solving, humor, and clear explanations to tackle complex challenges - from teaching kids about
+                photosynthesis to saving humanity from extinction. His approach: break down complex problems into
+                manageable parts, test hypotheses systematically, and never lose your sense of humor.
+            </div>
+
+            <div class="scientist-insight">
+                <strong>Dr. Grace's Teaching Philosophy:</strong> "Every complex system is just simple parts working
+                together. Whether you're organizing a middle school classroom or designing a spaceship's storage system,
+                the same principles apply: structure, efficiency, and knowing when to use the right tool for the job."
+                🧑‍🔬
+            </div>
+
+            <p>In Phase 1, we learned about algorithms - the step-by-step instructions for solving problems. Now we're
+                going to explore <strong>data structures</strong> - the different ways we can organize and store
+                information to make our algorithms more efficient.</p>
+
+            <p>Think of data structures like different types of storage systems. Just as Dr. Grace needed different
+                containers for different materials in his lab (test tubes for samples, filing cabinets for research
+                papers, emergency kits for critical supplies), programmers need different data structures for different
+                types of information and operations.</p>
+        </div>
+
+        <!-- Chapter 1: Arrays -->
+        <div class="chapter">
+            <h2>📦 Chapter 1: Arrays - "The Lab Equipment Rack"</h2>
+
+            <div class="context-box">
+                <strong>Real-World Context:</strong> Imagine Dr. Grace organizing his lab equipment on numbered shelves.
+                Each shelf has a specific position (index), and he can quickly access any tool by knowing its shelf
+                number. This is exactly how arrays work in programming.
+            </div>
+
+            <div class="scientist-insight">
+                <strong>Dr. Grace's Array Wisdom:</strong> "Arrays are like the periodic table of data structures -
+                everything has its place, you can find elements by their position number, and the organization makes
+                everything else possible. Plus, just like elements in the periodic table, the order matters!" ⚛️
+            </div>
+
+            <p>An <strong>array</strong> is a collection of elements stored in consecutive memory locations. Each
+                element can be accessed using its <strong>index</strong> (position number), starting from 0.</p>
+
+            <h3>🧪 Interactive Array Laboratory</h3>
+            <div class="interactive-demo">
+                <p><strong>Dr. Grace's Lab Equipment Array:</strong></p>
+                <p><em>Each piece of equipment has a specific position (index) in the storage rack.</em></p>
+
+                <div class="input-group">
+                    <input type="text" id="array-element" placeholder="Enter lab equipment name" maxlength="15">
+                    <input type="number" id="array-index" placeholder="Position (0-9)" min="0" max="9">
+                    <button class="btn" onclick="addToArray()">Add Equipment</button>
+                    <button class="btn" onclick="removeFromArray()">Remove by Index</button>
+                    <button class="btn" onclick="searchArray()">Search Equipment</button>
+                    <button class="btn" onclick="resetArray()">Reset Lab</button>
+                </div>
+
+                <div class="visualization">
+                    <div class="status-display" id="array-status">Lab Equipment Rack: Empty</div>
+                    <div class="data-structure-container" id="array-display">
+                        <!-- Array elements will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="operation-log" id="array-log">
+                    <div>🔬 Lab Equipment Management System Started</div>
+                    <div>📝 Operations will be logged here...</div>
+                </div>
+
+                <h4>📊 Array Operations Complexity</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Operation</th>
+                        <th>Time Complexity</th>
+                        <th>Dr. Grace's Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Access by index</td>
+                        <td>O(1) - Constant</td>
+                        <td>"Like knowing exactly which shelf your microscope is on"</td>
+                    </tr>
+                    <tr>
+                        <td>Search by value</td>
+                        <td>O(n) - Linear</td>
+                        <td>"Looking through every shelf until you find the beaker you need"</td>
+                    </tr>
+                    <tr>
+                        <td>Insert at end</td>
+                        <td>O(1) - Constant</td>
+                        <td>"Adding new equipment to the next available shelf"</td>
+                    </tr>
+                    <tr>
+                        <td>Insert at middle</td>
+                        <td>O(n) - Linear</td>
+                        <td>"Moving everything to make room - like reorganizing shelves"</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('array-python-tab', this)">Python Implementation</button>
+                <button class="tab" onclick="showTab('array-javascript-tab', this)">JavaScript Implementation</button>
+            </div>
+
+            <div id="array-python-tab" class="tab-content active">
+                <div class="code-block python">
+                    <pre>
+class LabEquipmentRack:
+    """
+    Dr. Grace's Lab Equipment Management System
+    An array-based storage system for scientific instruments
+    """
+    
+    def __init__(self, capacity=10):
+        self.equipment = [None] * capacity  # Pre-allocated array
+        self.size = 0
+        self.capacity = capacity
+        print(f"🔬 Lab rack initialized with {capacity} positions")
+    
+    def add_equipment(self, item, position=None):
+        """Add equipment to specific position or next available slot"""
+        if position is None:
+            # Add to end (next available position)
+            if self.size < self.capacity:
+                self.equipment[self.size] = item
+                print(f"✅ Added '{item}' at position {self.size}")
+                self.size += 1
+            else:
+                print("❌ Lab rack is full!")
+        else:
+            # Add to specific position
+            if 0 <= position < self.capacity:
+                if self.equipment[position] is None:
+                    self.equipment[position] = item
+                    self.size += 1
+                    print(f"✅ Added '{item}' at position {position}")
+                else:
+                    print(f"⚠️ Position {position} already occupied by '{self.equipment[position]}'")
+            else:
+                print("❌ Invalid position!")
+    
+    def get_equipment(self, position):
+        """Access equipment by position - O(1) operation"""
+        if 0 <= position < self.capacity:
+            item = self.equipment[position]
+            if item:
+                print(f"🔍 Found '{item}' at position {position}")
+                return item
+            else:
+                print(f"📭 Position {position} is empty")
+                return None
+        else:
+            print("❌ Position out of range!")
+            return None
+    
+    def search_equipment(self, item):
+        """Search for equipment by name - O(n) operation"""
+        print(f"🔎 Searching for '{item}'...")
+        for i in range(self.capacity):
+            if self.equipment[i] == item:
+                print(f"✅ Found '{item}' at position {i}")
+                return i
+        print(f"❌ '{item}' not found in lab")
+        return -1
+    
+    def remove_equipment(self, position):
+        """Remove equipment from specific position"""
+        if 0 <= position < self.capacity and self.equipment[position]:
+            item = self.equipment[position]
+            self.equipment[position] = None
+            self.size -= 1
+            print(f"🗑️ Removed '{item}' from position {position}")
+            return item
+        else:
+            print("❌ Nothing to remove at that position")
+            return None
+
+# Dr. Grace's lab setup
+lab_rack = LabEquipmentRack()
+lab_rack.add_equipment("Microscope")
+lab_rack.add_equipment("Beaker Set")
+lab_rack.add_equipment("pH Strips", 5)  # Specific position
+lab_rack.search_equipment("Microscope")
+                    </pre>
+                </div>
+            </div>
+
+            <div id="array-javascript-tab" class="tab-content">
+                <div class="code-block javascript">
+                    <pre>
+class LabEquipmentRack {
+    /**
+     * Dr. Grace's Lab Equipment Management System
+     * An array-based storage system for scientific instruments
+     */
+    
+    constructor(capacity = 10) {
+        this.equipment = new Array(capacity).fill(null);
+        this.size = 0;
+        this.capacity = capacity;
+        console.log(`🔬 Lab rack initialized with ${capacity} positions`);
+    }
+    
+    addEquipment(item, position = null) {
+        // Add equipment to specific position or next available slot
+        if (position === null) {
+            // Add to end (next available position)
+            if (this.size < this.capacity) {
+                this.equipment[this.size] = item;
+                console.log(`✅ Added '${item}' at position ${this.size}`);
+                this.size++;
+            } else {
+                console.log("❌ Lab rack is full!");
+            }
+        } else {
+            // Add to specific position
+            if (position >= 0 && position < this.capacity) {
+                if (this.equipment[position] === null) {
+                    this.equipment[position] = item;
+                    this.size++;
+                    console.log(`✅ Added '${item}' at position ${position}`);
+                } else {
+                    console.log(`⚠️ Position ${position} already occupied by '${this.equipment[position]}'`);
+                }
+            } else {
+                console.log("❌ Invalid position!");
+            }
+        }
+    }
+    
+    getEquipment(position) {
+        // Access equipment by position - O(1) operation
+        if (position >= 0 && position < this.capacity) {
+            const item = this.equipment[position];
+            if (item) {
+                console.log(`🔍 Found '${item}' at position ${position}`);
+                return item;
+            } else {
+                console.log(`📭 Position ${position} is empty`);
+                return null;
+            }
+        } else {
+            console.log("❌ Position out of range!");
+            return null;
+        }
+    }
+    
+    searchEquipment(item) {
+        // Search for equipment by name - O(n) operation
+        console.log(`🔎 Searching for '${item}'...`);
+        for (let i = 0; i < this.capacity; i++) {
+            if (this.equipment[i] === item) {
+                console.log(`✅ Found '${item}' at position ${i}`);
+                return i;
+            }
+        }
+        console.log(`❌ '${item}' not found in lab`);
+        return -1;
+    }
+    
+    removeEquipment(position) {
+        // Remove equipment from specific position
+        if (position >= 0 && position < this.capacity && this.equipment[position]) {
+            const item = this.equipment[position];
+            this.equipment[position] = null;
+            this.size--;
+            console.log(`🗑️ Removed '${item}' from position ${position}`);
+            return item;
+        } else {
+            console.log("❌ Nothing to remove at that position");
+            return null;
+        }
+    }
+}
+
+// Dr. Grace's lab setup
+const labRack = new LabEquipmentRack();
+labRack.addEquipment("Microscope");
+labRack.addEquipment("Beaker Set");
+labRack.addEquipment("pH Strips", 5);  // Specific position
+labRack.searchEquipment("Microscope");
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 2: Stacks -->
+        <div class="chapter">
+            <h2>📚 Chapter 2: Stacks - "The Emergency Supply Tower"</h2>
+
+            <div class="context-box">
+                <strong>Real-World Context:</strong> Imagine Dr. Grace stacking emergency supply boxes in his
+                spacecraft. He can only access the top box without moving others. When he needs supplies, he takes from
+                the top. When new supplies arrive, they go on top. This is a stack - "Last In, First Out" (LIFO).
+            </div>
+
+            <div class="scientist-insight">
+                <strong>Dr. Grace's Stack Philosophy:</strong> "Stacks are like my problem-solving approach - I deal
+                with the most recent issue first, then work my way down to older problems. It's also like stacking
+                pancakes, except these pancakes might save humanity!" 🥞
+            </div>
+
+            <p>A <strong>stack</strong> is a linear data structure that follows the LIFO (Last In, First Out) principle.
+                Think of it as a stack of plates - you can only add or remove plates from the top.</p>
+
+            <h3>🧪 Interactive Stack Laboratory</h3>
+            <div class="interactive-demo">
+                <p><strong>Dr. Grace's Emergency Supply Tower:</strong></p>
+                <p><em>Supplies are stacked vertically. Only the top item can be accessed.</em></p>
+
+                <div class="input-group">
+                    <input type="text" id="stack-element" placeholder="Enter supply name" maxlength="12">
+                    <button class="btn" onclick="pushToStack()">Push Supply (Add to Top)</button>
+                    <button class="btn" onclick="popFromStack()">Pop Supply (Remove from Top)</button>
+                    <button class="btn" onclick="peekStack()">Peek at Top Supply</button>
+                    <button class="btn" onclick="resetStack()">Clear Tower</button>
+                </div>
+
+                <div class="visualization">
+                    <div class="status-display" id="stack-status">Emergency Supply Tower: Empty</div>
+                    <div class="data-structure-container stack-container" id="stack-display">
+                        <div style="color: #666; font-style: italic; margin: 20px 0;">⬆️ Top of Stack ⬆️</div>
+                    </div>
+                </div>
+
+                <div class="operation-log" id="stack-log">
+                    <div>🗼 Emergency Supply Tower System Started</div>
+                    <div>📝 Stack operations will be logged here...</div>
+                </div>
+
+                <h4>📊 Stack Operations Complexity</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Operation</th>
+                        <th>Time Complexity</th>
+                        <th>Dr. Grace's Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Push (add to top)</td>
+                        <td>O(1) - Constant</td>
+                        <td>"Just place the new supply box on top of the tower"</td>
+                    </tr>
+                    <tr>
+                        <td>Pop (remove from top)</td>
+                        <td>O(1) - Constant</td>
+                        <td>"Grab the top box - no digging required"</td>
+                    </tr>
+                    <tr>
+                        <td>Peek (look at top)</td>
+                        <td>O(1) - Constant</td>
+                        <td>"Check what's on top without disturbing the stack"</td>
+                    </tr>
+                    <tr>
+                        <td>Search</td>
+                        <td>O(n) - Linear</td>
+                        <td>"Would need to remove boxes one by one to find something"</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('stack-python-tab', this)">Python Implementation</button>
+                <button class="tab" onclick="showTab('stack-javascript-tab', this)">JavaScript Implementation</button>
+            </div>
+
+            <div id="stack-python-tab" class="tab-content active">
+                <div class="code-block python">
+                    <pre>
+class EmergencySupplyTower:
+    """
+    Dr. Grace's Emergency Supply Management System
+    A stack-based storage system following LIFO principle
+    """
+    
+    def __init__(self):
+        self.supplies = []  # Using Python list as underlying structure
+        self.max_height = 10  # Safety limit for our tower
+        print("🗼 Emergency Supply Tower initialized")
+    
+    def push(self, supply):
+        """Add supply to top of tower - O(1) operation"""
+        if len(self.supplies) < self.max_height:
+            self.supplies.append(supply)
+            print(f"⬆️ Pushed '{supply}' to top of tower")
+            print(f"📏 Tower height: {len(self.supplies)}")
+        else:
+            print("⚠️ Tower at maximum height! Cannot add more supplies.")
+    
+    def pop(self):
+        """Remove and return supply from top of tower - O(1) operation"""
+        if not self.is_empty():
+            supply = self.supplies.pop()
+            print(f"⬇️ Popped '{supply}' from top of tower")
+            print(f"📏 Tower height: {len(self.supplies)}")
+            return supply
+        else:
+            print("❌ Tower is empty! Nothing to pop.")
+            return None
+    
+    def peek(self):
+        """Look at top supply without removing it - O(1) operation"""
+        if not self.is_empty():
+            top_supply = self.supplies[-1]
+            print(f"👀 Top supply: '{top_supply}'")
+            return top_supply
+        else:
+            print("📭 Tower is empty! Nothing to peek at.")
+            return None
+    
+    def is_empty(self):
+        """Check if tower is empty"""
+        return len(self.supplies) == 0
+    
+    def size(self):
+        """Get current height of tower"""
+        return len(self.supplies)
+    
+    def display_tower(self):
+        """Display the entire tower from top to bottom"""
+        if self.is_empty():
+            print("📭 Tower is empty")
+        else:
+            print("🗼 Current Emergency Supply Tower:")
+            for i in range(len(self.supplies) - 1, -1, -1):
+                level = len(self.supplies) - i
+                print(f"Level {level}: [{self.supplies[i]}]")
+            print("⬇️ Base of Tower ⬇️")
+
+# Dr. Grace's emergency supply management
+supply_tower = EmergencySupplyTower()
+
+# Building the tower
+supply_tower.push("Medical Kit")
+supply_tower.push("Food Rations")
+supply_tower.push("Water Purifier")
+supply_tower.push("Emergency Radio")
+
+supply_tower.display_tower()
+supply_tower.peek()  # Check what's on top
+supply_tower.pop()   # Take the radio
+supply_tower.display_tower()
+                    </pre>
+                </div>
+            </div>
+
+            <div id="stack-javascript-tab" class="tab-content">
+                <div class="code-block javascript">
+                    <pre>
+class EmergencySupplyTower {
+    /**
+     * Dr. Grace's Emergency Supply Management System
+     * A stack-based storage system following LIFO principle
+     */
+    
+    constructor() {
+        this.supplies = [];  // Using JavaScript array as underlying structure
+        this.maxHeight = 10;  // Safety limit for our tower
+        console.log("🗼 Emergency Supply Tower initialized");
+    }
+    
+    push(supply) {
+        // Add supply to top of tower - O(1) operation
+        if (this.supplies.length < this.maxHeight) {
+            this.supplies.push(supply);
+            console.log(`⬆️ Pushed '${supply}' to top of tower`);
+            console.log(`📏 Tower height: ${this.supplies.length}`);
+        } else {
+            console.log("⚠️ Tower at maximum height! Cannot add more supplies.");
+        }
+    }
+    
+    pop() {
+        // Remove and return supply from top of tower - O(1) operation
+        if (!this.isEmpty()) {
+            const supply = this.supplies.pop();
+            console.log(`⬇️ Popped '${supply}' from top of tower`);
+            console.log(`📏 Tower height: ${this.supplies.length}`);
+            return supply;
+        } else {
+            console.log("❌ Tower is empty! Nothing to pop.");
+            return null;
+        }
+    }
+    
+    peek() {
+        // Look at top supply without removing it - O(1) operation
+        if (!this.isEmpty()) {
+            const topSupply = this.supplies[this.supplies.length - 1];
+            console.log(`👀 Top supply: '${topSupply}'`);
+            return topSupply;
+        } else {
+            console.log("📭 Tower is empty! Nothing to peek at.");
+            return null;
+        }
+    }
+    
+    isEmpty() {
+        // Check if tower is empty
+        return this.supplies.length === 0;
+    }
+    
+    size() {
+        // Get current height of tower
+        return this.supplies.length;
+    }
+    
+    displayTower() {
+        // Display the entire tower from top to bottom
+        if (this.isEmpty()) {
+            console.log("📭 Tower is empty");
+        } else {
+            console.log("🗼 Current Emergency Supply Tower:");
+            for (let i = this.supplies.length - 1; i >= 0; i--) {
+                const level = this.supplies.length - i;
+                console.log(`Level ${level}: [${this.supplies[i]}]`);
+            }
+            console.log("⬇️ Base of Tower ⬇️");
+        }
+    }
+}
+
+// Dr. Grace's emergency supply management
+const supplyTower = new EmergencySupplyTower();
+
+// Building the tower
+supplyTower.push("Medical Kit");
+supplyTower.push("Food Rations");
+supplyTower.push("Water Purifier");
+supplyTower.push("Emergency Radio");
+
+supplyTower.displayTower();
+supplyTower.peek();  // Check what's on top
+supplyTower.pop();   // Take the radio
+supplyTower.displayTower();
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 3: Queues -->
+        <div class="chapter">
+            <h2>🚶‍♂️ Chapter 3: Queues - "The Cafeteria Line System"</h2>
+
+            <div class="context-box">
+                <strong>Real-World Context:</strong> Remember Dr. Grace as a middle school teacher managing cafeteria
+                lines? Students enter the line at the back and are served from the front. First student in line gets
+                served first. This fair "First In, First Out" (FIFO) system is exactly how queues work in programming.
+            </div>
+
+            <div class="scientist-insight">
+                <strong>Dr. Grace's Queue Wisdom:</strong> "Queues are like the lunch line I used to supervise - fair,
+                orderly, and everyone gets their turn. No cutting allowed! It's also how we process tasks on the
+                spaceship: first problem detected, first problem solved." 🍽️
+            </div>
+
+            <p>A <strong>queue</strong> is a linear data structure that follows the FIFO (First In, First Out)
+                principle. Elements are added at one end (rear) and removed from the other end (front).</p>
+
+            <h3>🧪 Interactive Queue Laboratory</h3>
+            <div class="interactive-demo">
+                <p><strong>Dr. Grace's Task Processing Queue:</strong></p>
+                <p><em>Tasks are added to the rear and processed from the front. Fair and orderly!</em></p>
+
+                <div class="input-group">
+                    <input type="text" id="queue-element" placeholder="Enter task name" maxlength="15">
+                    <button class="btn" onclick="enqueue()">Enqueue (Add to Rear)</button>
+                    <button class="btn" onclick="dequeue()">Dequeue (Process from Front)</button>
+                    <button class="btn" onclick="peekQueue()">Peek at Front Task</button>
+                    <button class="btn" onclick="resetQueue()">Clear Queue</button>
+                </div>
+
+                <div class="visualization">
+                    <div class="status-display" id="queue-status">Task Processing Queue: Empty</div>
+                    <div class="data-structure-container queue-container" id="queue-display">
+                        <div class="queue-pointer front-pointer">⬅️ FRONT (Exit)</div>
+                        <div style="color: #666; font-style: italic; margin: 20px 0;">Queue is empty</div>
+                        <div class="queue-pointer rear-pointer">REAR (Entry) ➡️</div>
+                    </div>
+                </div>
+
+                <div class="operation-log" id="queue-log">
+                    <div>🚶‍♂️ Task Processing Queue System Started</div>
+                    <div>📝 Queue operations will be logged here...</div>
+                </div>
+
+                <h4>📊 Queue Operations Complexity</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Operation</th>
+                        <th>Time Complexity</th>
+                        <th>Dr. Grace's Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Enqueue (add to rear)</td>
+                        <td>O(1) - Constant</td>
+                        <td>"New student joins the back of the lunch line"</td>
+                    </tr>
+                    <tr>
+                        <td>Dequeue (remove from front)</td>
+                        <td>O(1) - Constant</td>
+                        <td>"Serve the student who's been waiting longest"</td>
+                    </tr>
+                    <tr>
+                        <td>Peek (look at front)</td>
+                        <td>O(1) - Constant</td>
+                        <td>"See who's next in line without serving them"</td>
+                    </tr>
+                    <tr>
+                        <td>Search</td>
+                        <td>O(n) - Linear</td>
+                        <td>"Look through the entire line to find someone"</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('queue-python-tab', this)">Python Implementation</button>
+                <button class="tab" onclick="showTab('queue-javascript-tab', this)">JavaScript Implementation</button>
+            </div>
+
+            <div id="queue-python-tab" class="tab-content active">
+                <div class="code-block python">
+                    <pre>
+from collections import deque
+
+class TaskProcessingQueue:
+    """
+    Dr. Grace's Task Management System
+    A queue-based system following FIFO principle for fair task processing
+    """
+    
+    def __init__(self):
+        self.tasks = deque()  # Using deque for efficient operations at both ends
+        self.max_capacity = 15  # Prevent system overload
+        print("🚶‍♂️ Task Processing Queue initialized")
+    
+    def enqueue(self, task):
+        """Add task to rear of queue - O(1) operation"""
+        if len(self.tasks) < self.max_capacity:
+            self.tasks.append(task)
+            print(f"➡️ Enqueued '{task}' to rear of queue")
+            print(f"📏 Queue length: {len(self.tasks)}")
+        else:
+            print("⚠️ Queue at maximum capacity! Task rejected.")
+    
+    def dequeue(self):
+        """Remove and return task from front of queue - O(1) operation"""
+        if not self.is_empty():
+            task = self.tasks.popleft()  # Remove from front
+            print(f"⬅️ Dequeued '{task}' from front of queue")
+            print(f"📏 Queue length: {len(self.tasks)}")
+            return task
+        else:
+            print("❌ Queue is empty! No tasks to process.")
+            return None
+    
+    def peek(self):
+        """Look at front task without removing it - O(1) operation"""
+        if not self.is_empty():
+            front_task = self.tasks[0]
+            print(f"👀 Next task to process: '{front_task}'")
+            return front_task
+        else:
+            print("📭 Queue is empty! No tasks waiting.")
+            return None
+    
+    def is_empty(self):
+        """Check if queue is empty"""
+        return len(self.tasks) == 0
+    
+    def size(self):
+        """Get current queue length"""
+        return len(self.tasks)
+    
+    def display_queue(self):
+        """Display the entire queue from front to rear"""
+        if self.is_empty():
+            print("📭 No tasks in queue")
+        else:
+            print("🚶‍♂️ Current Task Processing Queue:")
+            print("FRONT ➡️", end=" ")
+            for i, task in enumerate(self.tasks):
+                print(f"[{task}]", end="")
+                if i < len(self.tasks) - 1:
+                    print(" ➡️ ", end="")
+            print(" ⬅️ REAR")
+    
+    def process_all_tasks(self):
+        """Process all tasks in queue order"""
+        print("🔄 Processing all tasks in queue...")
+        while not self.is_empty():
+            task = self.dequeue()
+            print(f"✅ Processing task: '{task}'")
+            # Simulate task processing time
+            import time
+            time.sleep(0.1)
+        print("🎉 All tasks completed!")
+
+# Dr. Grace's mission control system
+task_queue = TaskProcessingQueue()
+
+# Adding tasks to the queue
+task_queue.enqueue("Check life support")
+task_queue.enqueue("Analyze samples")
+task_queue.enqueue("Update navigation")
+task_queue.enqueue("Send status report")
+
+task_queue.display_queue()
+task_queue.peek()  # Check next task
+task_queue.dequeue()  # Process first task
+task_queue.display_queue()
+                    </pre>
+                </div>
+            </div>
+
+            <div id="queue-javascript-tab" class="tab-content">
+                <div class="code-block javascript">
+                    <pre>
+class TaskProcessingQueue {
+    /**
+     * Dr. Grace's Task Management System
+     * A queue-based system following FIFO principle for fair task processing
+     */
+    
+    constructor() {
+        this.tasks = [];  // Using array with front/rear pointers for efficiency
+        this.front = 0;   // Points to front element
+        this.rear = 0;    // Points to next insertion position
+        this.maxCapacity = 15;  // Prevent system overload
+        console.log("🚶‍♂️ Task Processing Queue initialized");
+    }
+    
+    enqueue(task) {
+        // Add task to rear of queue - O(1) operation
+        if (this.size() < this.maxCapacity) {
+            this.tasks[this.rear] = task;
+            this.rear++;
+            console.log(`➡️ Enqueued '${task}' to rear of queue`);
+            console.log(`📏 Queue length: ${this.size()}`);
+        } else {
+            console.log("⚠️ Queue at maximum capacity! Task rejected.");
+        }
+    }
+    
+    dequeue() {
+        // Remove and return task from front of queue - O(1) operation
+        if (!this.isEmpty()) {
+            const task = this.tasks[this.front];
+            this.tasks[this.front] = undefined;  // Clear reference
+            this.front++;
+            console.log(`⬅️ Dequeued '${task}' from front of queue`);
+            console.log(`📏 Queue length: ${this.size()}`);
+            
+            // Reset pointers if queue becomes empty
+            if (this.isEmpty()) {
+                this.front = 0;
+                this.rear = 0;
+            }
+            
+            return task;
+        } else {
+            console.log("❌ Queue is empty! No tasks to process.");
+            return null;
+        }
+    }
+    
+    peek() {
+        // Look at front task without removing it - O(1) operation
+        if (!this.isEmpty()) {
+            const frontTask = this.tasks[this.front];
+            console.log(`👀 Next task to process: '${frontTask}'`);
+            return frontTask;
+        } else {
+            console.log("📭 Queue is empty! No tasks waiting.");
+            return null;
+        }
+    }
+    
+    isEmpty() {
+        // Check if queue is empty
+        return this.front >= this.rear;
+    }
+    
+    size() {
+        // Get current queue length
+        return Math.max(0, this.rear - this.front);
+    }
+    
+    displayQueue() {
+        // Display the entire queue from front to rear
+        if (this.isEmpty()) {
+            console.log("📭 No tasks in queue");
+        } else {
+            console.log("🚶‍♂️ Current Task Processing Queue:");
+            let queueString = "FRONT ➡️ ";
+            for (let i = this.front; i < this.rear; i++) {
+                queueString += `[${this.tasks[i]}]`;
+                if (i < this.rear - 1) {
+                    queueString += " ➡️ ";
+                }
+            }
+            queueString += " ⬅️ REAR";
+            console.log(queueString);
+        }
+    }
+    
+    async processAllTasks() {
+        // Process all tasks in queue order
+        console.log("🔄 Processing all tasks in queue...");
+        while (!this.isEmpty()) {
+            const task = this.dequeue();
+            console.log(`✅ Processing task: '${task}'`);
+            // Simulate task processing time
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        console.log("🎉 All tasks completed!");
+    }
+}
+
+// Dr. Grace's mission control system
+const taskQueue = new TaskProcessingQueue();
+
+// Adding tasks to the queue
+taskQueue.enqueue("Check life support");
+taskQueue.enqueue("Analyze samples");
+taskQueue.enqueue("Update navigation");
+taskQueue.enqueue("Send status report");
+
+taskQueue.displayQueue();
+taskQueue.peek();     // Check next task
+taskQueue.dequeue();  // Process first task
+taskQueue.displayQueue();
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 4: Hash Tables -->
+        <div class="chapter">
+            <h2>🗂️ Chapter 4: Hash Tables - "The Instant Lookup Database"</h2>
+
+            <div class="context-box">
+                <strong>Real-World Context:</strong> Imagine Dr. Grace needs to quickly look up information about
+                different chemical elements. Instead of searching through pages of notes, he has a system where each
+                element name directly points to its information. Hydrogen → H, atomic number 1, etc. This instant lookup
+                system is how hash tables work.
+            </div>
+
+            <div class="scientist-insight">
+                <strong>Dr. Grace's Hash Table Insight:</strong> "Hash tables are like having a perfect filing system
+                where you never have to search. It's like knowing exactly which page of my lab notebook contains
+                information about each element - except the 'page number' is calculated mathematically from the
+                element's name!" 🧮
+            </div>
+
+            <p>A <strong>hash table</strong> (also called hash map) uses a hash function to compute an index into an
+                array of buckets, from which the desired value can be found. Think of it as a super-efficient phone book
+                where you can instantly jump to any name.</p>
+
+            <h3>🧪 Interactive Hash Table Laboratory</h3>
+            <div class="interactive-demo">
+                <p><strong>Dr. Grace's Chemical Element Database:</strong></p>
+                <p><em>Store and retrieve element information instantly using hash keys!</em></p>
+
+                <div class="input-group">
+                    <input type="text" id="hash-key" placeholder="Element name (e.g., Hydrogen)" maxlength="15">
+                    <input type="text" id="hash-value" placeholder="Element info (e.g., H, 1)" maxlength="20">
+                    <button class="btn" onclick="insertHash()">Store Element</button>
+                    <button class="btn" onclick="searchHash()">Look Up Element</button>
+                    <button class="btn" onclick="deleteHash()">Remove Element</button>
+                    <button class="btn" onclick="resetHash()">Clear Database</button>
+                </div>
+
+                <div class="visualization">
+                    <div class="status-display" id="hash-status">Chemical Element Database: Empty</div>
+                    <div class="data-structure-container" id="hash-display">
+                        <div style="color: #666; font-style: italic; margin: 20px 0;">Hash table buckets will appear
+                            here</div>
+                    </div>
+                </div>
+
+                <div class="operation-log" id="hash-log">
+                    <div>🗂️ Chemical Element Database System Started</div>
+                    <div>📝 Hash table operations will be logged here...</div>
+                </div>
+
+                <h4>📊 Hash Table Operations Complexity</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Operation</th>
+                        <th>Average Case</th>
+                        <th>Worst Case</th>
+                        <th>Dr. Grace's Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Insert</td>
+                        <td>O(1) - Constant</td>
+                        <td>O(n) - Linear</td>
+                        <td>"Usually instant, unless all elements hash to same bucket"</td>
+                    </tr>
+                    <tr>
+                        <td>Search</td>
+                        <td>O(1) - Constant</td>
+                        <td>O(n) - Linear</td>
+                        <td>"Like knowing exactly which page has your info"</td>
+                    </tr>
+                    <tr>
+                        <td>Delete</td>
+                        <td>O(1) - Constant</td>
+                        <td>O(n) - Linear</td>
+                        <td>"Find it instantly, remove it instantly"</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Final Chapter: Your Mission -->
+        <div class="chapter">
+            <h2>🎯 Your Mission: Phase 2 Complete!</h2>
+
+            <div class="scientist-insight">
+                <strong>Dr. Grace's Final Data Structure Wisdom:</strong> "Remember, choosing the right data structure
+                is like choosing the right scientific instrument. You wouldn't use a telescope to examine bacteria, and
+                you wouldn't use a microscope to study stars. Each data structure has its perfect use case!" 🔬
+            </div>
+
+            <h3>✅ Phase 2 Mastery Checklist:</h3>
+            <ul>
+                <li>□ Understand arrays as indexed collections with O(1) access</li>
+                <li>□ Master stacks (LIFO) for managing sequential operations</li>
+                <li>□ Implement queues (FIFO) for fair task processing</li>
+                <li>□ Grasp hash tables for instant key-value lookups</li>
+                <li>□ Know when to use each data structure</li>
+                <li>□ Implement all structures in both Python and JavaScript</li>
+            </ul>
+
+            <h3>🚀 Coming Up in Phase 3: "Advanced Propulsion Systems"</h3>
+            <p>Next, we'll explore the really powerful algorithms: sorting (organizing your data), recursion (problems
+                that solve themselves), and dynamic programming (remembering solutions to avoid redundant work). Think
+                of it as upgrading from basic lab equipment to advanced scientific instruments!</p>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="btn" onclick="completedPhase2()" style="font-size: 1.1em; padding: 15px 30px;">🚀 Launch
+                    Phase 3: Advanced Algorithms!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global data structures for demonstrations
+        let labEquipment = Array(10).fill(null);
+        let equipmentCount = 0;
+        let emergencyStack = [];
+        let taskQueue = [];
+        let queueFront = 0;
+        let queueRear = 0;
+        let hashTable = {};
+        let hashTableSize = 10;
+        let hashBuckets = Array(hashTableSize).fill(null).map(() => []);
+
+        // Initialize the page
+        function init() {
+            displayArray();
+            displayStack();
+            displayQueue();
+            displayHashTable();
+        }
+
+        // Array Operations
+        function displayArray() {
+            const container = document.getElementById('array-display');
+            container.innerHTML = '';
+
+            labEquipment.forEach((value, index) => {
+                const element = document.createElement('div');
+                element.className = 'data-element';
+                element.id = `array-element-${index}`;
+
+                const indexLabel = document.createElement('div');
+                indexLabel.className = 'array-index';
+                indexLabel.textContent = index;
+                element.appendChild(indexLabel);
+
+                const valueDiv = document.createElement('div');
+                valueDiv.textContent = value || 'Empty';
+                if (!value) {
+                    element.style.opacity = '0.3';
+                    element.style.background = 'linear-gradient(45deg, #666, #555)';
+                }
+                element.appendChild(valueDiv);
+
+                container.appendChild(element);
+            });
+
+            updateArrayStatus();
+        }
+
+        function addToArray() {
+            const itemInput = document.getElementById('array-element');
+            const indexInput = document.getElementById('array-index');
+            const item = itemInput.value.trim();
+            const index = parseInt(indexInput.value);
+
+            if (!item) {
+                logArrayOperation("❌ Please enter equipment name");
+                return;
+            }
+
+            if (isNaN(index) || index < 0 || index >= labEquipment.length) {
+                // Add to next available position
+                let nextIndex = -1;
+                for (let i = 0; i < labEquipment.length; i++) {
+                    if (!labEquipment[i]) {
+                        nextIndex = i;
+                        break;
+                    }
+                }
+
+                if (nextIndex !== -1) {
+                    labEquipment[nextIndex] = item;
+                    equipmentCount++;
+                    logArrayOperation(`✅ Added '${item}' at position ${nextIndex}`);
+                    highlightElement(`array-element-${nextIndex}`, 'success');
+                } else {
+                    logArrayOperation("❌ Lab rack is full!");
+                }
+            } else {
+                if (!labEquipment[index]) {
+                    labEquipment[index] = item;
+                    equipmentCount++;
+                    logArrayOperation(`✅ Added '${item}' at position ${index}`);
+                    highlightElement(`array-element-${index}`, 'success');
+                } else {
+                    logArrayOperation(`⚠️ Position ${index} occupied by '${labEquipment[index]}'`);
+                }
+            }
+
+            itemInput.value = '';
+            indexInput.value = '';
+            displayArray();
+        }
+
+        function removeFromArray() {
+            const indexInput = document.getElementById('array-index');
+            const index = parseInt(indexInput.value);
+
+            if (isNaN(index) || index < 0 || index >= labEquipment.length) {
+                logArrayOperation("❌ Please enter valid position (0-9)");
+                return;
+            }
+
+            if (labEquipment[index]) {
+                const item = labEquipment[index];
+                labEquipment[index] = null;
+                equipmentCount--;
+                logArrayOperation(`🗑️ Removed '${item}' from position ${index}`);
+                highlightElement(`array-element-${index}`, 'highlight');
+            } else {
+                logArrayOperation(`📭 Position ${index} is already empty`);
+            }
+
+            indexInput.value = '';
+            displayArray();
+        }
+
+        function searchArray() {
+            const itemInput = document.getElementById('array-element');
+            const item = itemInput.value.trim();
+
+            if (!item) {
+                logArrayOperation("❌ Please enter equipment name to search");
+                return;
+            }
+
+            let found = false;
+            for (let i = 0; i < labEquipment.length; i++) {
+                setTimeout(() => {
+                    const element = document.getElementById(`array-element-${i}`);
+                    if (element) {
+                        element.classList.add('highlight');
+                        setTimeout(() => element.classList.remove('highlight'), 300);
+                    }
+                }, i * 200);
+
+                if (labEquipment[i] === item) {
+                    setTimeout(() => {
+                        logArrayOperation(`✅ Found '${item}' at position ${i}`);
+                        highlightElement(`array-element-${i}`, 'success');
+                    }, (i + 1) * 200);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                setTimeout(() => {
+                    logArrayOperation(`❌ '${item}' not found in lab`);
+                }, labEquipment.length * 200);
+            }
+
+            itemInput.value = '';
+        }
+
+        function resetArray() {
+            labEquipment.fill(null);
+            equipmentCount = 0;
+            displayArray();
+            logArrayOperation("🔄 Lab equipment rack reset");
+        }
+
+        function logArrayOperation(message) {
+            const log = document.getElementById('array-log');
+            const entry = document.createElement('div');
+            entry.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateArrayStatus() {
+            const status = document.getElementById('array-status');
+            status.textContent = `Lab Equipment Rack: ${equipmentCount}/${labEquipment.length} positions filled`;
+        }
+
+        // Stack Operations
+        function displayStack() {
+            const container = document.getElementById('stack-display');
+            container.innerHTML = '<div style="color: #666; font-style: italic; margin: 20px 0;">⬆️ Top of Stack ⬆️</div>';
+
+            if (emergencyStack.length === 0) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.style.color = '#666';
+                emptyDiv.style.fontStyle = 'italic';
+                emptyDiv.style.margin = '20px 0';
+                emptyDiv.textContent = 'Stack is empty';
+                container.appendChild(emptyDiv);
+            } else {
+                // Display stack from top to bottom
+                for (let i = emergencyStack.length - 1; i >= 0; i--) {
+                    const element = document.createElement('div');
+                    element.className = 'data-element stack-element';
+                    element.textContent = emergencyStack[i];
+                    element.id = `stack-element-${i}`;
+                    container.appendChild(element);
+                }
+            }
+
+            updateStackStatus();
+        }
+
+        function pushToStack() {
+            const input = document.getElementById('stack-element');
+            const item = input.value.trim();
+
+            if (!item) {
+                logStackOperation("❌ Please enter supply name");
+                return;
+            }
+
+            if (emergencyStack.length >= 8) {
+                logStackOperation("⚠️ Stack at maximum height!");
+                return;
+            }
+
+            emergencyStack.push(item);
+            logStackOperation(`⬆️ Pushed '${item}' to top of stack`);
+
+            input.value = '';
+            displayStack();
+
+            // Animate the new element
+            setTimeout(() => {
+                const newElement = document.getElementById(`stack-element-${emergencyStack.length - 1}`);
+                if (newElement) {
+                    newElement.classList.add('stack-push');
+                }
+            }, 50);
+        }
+
+        function popFromStack() {
+            if (emergencyStack.length === 0) {
+                logStackOperation("❌ Stack is empty! Nothing to pop");
+                return;
+            }
+
+            const topElement = document.getElementById(`stack-element-${emergencyStack.length - 1}`);
+            if (topElement) {
+                topElement.classList.add('stack-pop');
+            }
+
+            setTimeout(() => {
+                const item = emergencyStack.pop();
+                logStackOperation(`⬇️ Popped '${item}' from stack`);
+                displayStack();
+            }, 500);
+        }
+
+        function peekStack() {
+            if (emergencyStack.length === 0) {
+                logStackOperation("📭 Stack is empty! Nothing to peek at");
+                return;
+            }
+
+            const topItem = emergencyStack[emergencyStack.length - 1];
+            logStackOperation(`👀 Top supply: '${topItem}'`);
+
+            const topElement = document.getElementById(`stack-element-${emergencyStack.length - 1}`);
+            if (topElement) {
+                highlightElement(topElement.id, 'highlight');
+            }
+        }
+
+        function resetStack() {
+            emergencyStack = [];
+            displayStack();
+            logStackOperation("🔄 Emergency supply stack cleared");
+        }
+
+        function logStackOperation(message) {
+            const log = document.getElementById('stack-log');
+            const entry = document.createElement('div');
+            entry.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateStackStatus() {
+            const status = document.getElementById('stack-status');
+            status.textContent = `Emergency Supply Tower: ${emergencyStack.length} supplies stacked`;
+        }
+
+        // Queue Operations
+        function displayQueue() {
+            const container = document.getElementById('queue-display');
+            container.innerHTML = '<div class="queue-pointer front-pointer">⬅️ FRONT (Exit)</div>';
+
+            if (queueRear <= queueFront) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.style.color = '#666';
+                emptyDiv.style.fontStyle = 'italic';
+                emptyDiv.style.margin = '20px 0';
+                emptyDiv.textContent = 'Queue is empty';
+                container.appendChild(emptyDiv);
+            } else {
+                for (let i = queueFront; i < queueRear; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'data-element';
+                    element.textContent = taskQueue[i];
+                    element.id = `queue-element-${i}`;
+                    container.appendChild(element);
+                }
+            }
+
+            const rearPointer = document.createElement('div');
+            rearPointer.className = 'queue-pointer rear-pointer';
+            rearPointer.textContent = 'REAR (Entry) ➡️';
+            container.appendChild(rearPointer);
+
+            updateQueueStatus();
+        }
+
+        function enqueue() {
+            const input = document.getElementById('queue-element');
+            const task = input.value.trim();
+
+            if (!task) {
+                logQueueOperation("❌ Please enter task name");
+                return;
+            }
+
+            if (queueRear - queueFront >= 10) {
+                logQueueOperation("⚠️ Queue at maximum capacity!");
+                return;
+            }
+
+            taskQueue[queueRear] = task;
+            logQueueOperation(`➡️ Enqueued '${task}' to rear of queue`);
+            queueRear++;
+
+            input.value = '';
+            displayQueue();
+
+            // Animate new element
+            setTimeout(() => {
+                const newElement = document.getElementById(`queue-element-${queueRear - 1}`);
+                if (newElement) {
+                    newElement.classList.add('slide-in');
+                }
+            }, 50);
+        }
+
+        function dequeue() {
+            if (queueRear <= queueFront) {
+                logQueueOperation("❌ Queue is empty! No tasks to process");
+                return;
+            }
+
+            const frontElement = document.getElementById(`queue-element-${queueFront}`);
+            if (frontElement) {
+                frontElement.classList.add('slide-out');
+            }
+
+            setTimeout(() => {
+                const task = taskQueue[queueFront];
+                taskQueue[queueFront] = undefined;
+                queueFront++;
+                logQueueOperation(`⬅️ Dequeued '${task}' from front of queue`);
+
+                // Reset pointers if queue becomes empty
+                if (queueFront >= queueRear) {
+                    queueFront = 0;
+                    queueRear = 0;
+                }
+
+                displayQueue();
+            }, 500);
+        }
+
+        function peekQueue() {
+            if (queueRear <= queueFront) {
+                logQueueOperation("📭 Queue is empty! No tasks waiting");
+                return;
+            }
+
+            const frontTask = taskQueue[queueFront];
+            logQueueOperation(`👀 Next task to process: '${frontTask}'`);
+
+            const frontElement = document.getElementById(`queue-element-${queueFront}`);
+            if (frontElement) {
+                highlightElement(frontElement.id, 'highlight');
+            }
+        }
+
+        function resetQueue() {
+            taskQueue = [];
+            queueFront = 0;
+            queueRear = 0;
+            displayQueue();
+            logQueueOperation("🔄 Task processing queue cleared");
+        }
+
+        function logQueueOperation(message) {
+            const log = document.getElementById('queue-log');
+            const entry = document.createElement('div');
+            entry.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateQueueStatus() {
+            const status = document.getElementById('queue-status');
+            const queueLength = Math.max(0, queueRear - queueFront);
+            status.textContent = `Task Processing Queue: ${queueLength} tasks waiting`;
+        }
+
+        // Hash Table Operations
+        function simpleHash(key) {
+            let hash = 0;
+            for (let i = 0; i < key.length; i++) {
+                hash = (hash + key.charCodeAt(i) * (i + 1)) % hashTableSize;
+            }
+            return hash;
+        }
+
+        function displayHashTable() {
+            const container = document.getElementById('hash-display');
+            container.innerHTML = '';
+
+            if (Object.keys(hashTable).length === 0) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.style.color = '#666';
+                emptyDiv.style.fontStyle = 'italic';
+                emptyDiv.style.margin = '20px 0';
+                emptyDiv.textContent = 'Hash table is empty';
+                container.appendChild(emptyDiv);
+                return;
+            }
+
+            // Create visual representation of hash buckets
+            for (let i = 0; i < hashTableSize; i++) {
+                const bucketDiv = document.createElement('div');
+                bucketDiv.style.display = 'flex';
+                bucketDiv.style.alignItems = 'center';
+                bucketDiv.style.margin = '5px 0';
+
+                const bucketLabel = document.createElement('div');
+                bucketLabel.textContent = `Bucket ${i}:`;
+                bucketLabel.style.width = '80px';
+                bucketLabel.style.color = '#4ecdc4';
+                bucketLabel.style.fontSize = '0.9em';
+                bucketDiv.appendChild(bucketLabel);
+
+                const bucketContent = document.createElement('div');
+                bucketContent.style.display = 'flex';
+                bucketContent.style.gap = '5px';
+                bucketContent.style.flexWrap = 'wrap';
+
+                // Show items in this bucket
+                let hasItems = false;
+                for (let [key, value] of Object.entries(hashTable)) {
+                    if (simpleHash(key) === i) {
+                        const item = document.createElement('div');
+                        item.className = 'data-element';
+                        item.style.fontSize = '0.8em';
+                        item.style.padding = '8px 12px';
+                        item.textContent = `${key}: ${value}`;
+                        item.id = `hash-item-${key}`;
+                        bucketContent.appendChild(item);
+                        hasItems = true;
+                    }
+                }
+
+                if (!hasItems) {
+                    const emptyBucket = document.createElement('div');
+                    emptyBucket.textContent = 'empty';
+                    emptyBucket.style.color = '#666';
+                    emptyBucket.style.fontStyle = 'italic';
+                    emptyBucket.style.fontSize = '0.8em';
+                    bucketContent.appendChild(emptyBucket);
+                }
+
+                bucketDiv.appendChild(bucketContent);
+                container.appendChild(bucketDiv);
+            }
+
+            updateHashStatus();
+        }
+
+        function insertHash() {
+            const keyInput = document.getElementById('hash-key');
+            const valueInput = document.getElementById('hash-value');
+            const key = keyInput.value.trim();
+            const value = valueInput.value.trim();
+
+            if (!key || !value) {
+                logHashOperation("❌ Please enter both element name and info");
+                return;
+            }
+
+            const hashIndex = simpleHash(key);
+            hashTable[key] = value;
+            logHashOperation(`✅ Stored '${key}: ${value}' (hash: ${hashIndex})`);
+
+            keyInput.value = '';
+            valueInput.value = '';
+            displayHashTable();
+
+            // Highlight the new item
+            setTimeout(() => {
+                const item = document.getElementById(`hash-item-${key}`);
+                if (item) {
+                    highlightElement(item.id, 'success');
+                }
+            }, 100);
+        }
+
+        function searchHash() {
+            const keyInput = document.getElementById('hash-key');
+            const key = keyInput.value.trim();
+
+            if (!key) {
+                logHashOperation("❌ Please enter element name to search");
+                return;
+            }
+
+            const hashIndex = simpleHash(key);
+            logHashOperation(`🔍 Searching for '${key}' (hash: ${hashIndex})`);
+
+            if (hashTable.hasOwnProperty(key)) {
+                const value = hashTable[key];
+                logHashOperation(`✅ Found '${key}': ${value}`);
+
+                const item = document.getElementById(`hash-item-${key}`);
+                if (item) {
+                    highlightElement(item.id, 'success');
+                }
+            } else {
+                logHashOperation(`❌ '${key}' not found in database`);
+            }
+
+            keyInput.value = '';
+        }
+
+        function deleteHash() {
+            const keyInput = document.getElementById('hash-key');
+            const key = keyInput.value.trim();
+
+            if (!key) {
+                logHashOperation("❌ Please enter element name to remove");
+                return;
+            }
+
+            if (hashTable.hasOwnProperty(key)) {
+                const value = hashTable[key];
+                delete hashTable[key];
+                logHashOperation(`🗑️ Removed '${key}': ${value}`);
+                displayHashTable();
+            } else {
+                logHashOperation(`❌ '${key}' not found in database`);
+            }
+
+            keyInput.value = '';
+        }
+
+        function resetHash() {
+            hashTable = {};
+            displayHashTable();
+            logHashOperation("🔄 Chemical element database cleared");
+        }
+
+        function logHashOperation(message) {
+            const log = document.getElementById('hash-log');
+            const entry = document.createElement('div');
+            entry.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateHashStatus() {
+            const status = document.getElementById('hash-status');
+            const elementCount = Object.keys(hashTable).length;
+            status.textContent = `Chemical Element Database: ${elementCount} elements stored`;
+        }
+
+        // Utility Functions
+        function highlightElement(elementId, type) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.classList.add(type);
+                setTimeout(() => {
+                    element.classList.remove(type);
+                }, 1500);
+            }
+        }
+
+        function showTab(tabId, button) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab and mark button as active
+            document.getElementById(tabId).classList.add('active');
+            button.classList.add('active');
+        }
+
+        function backtoPhase1() {
+            window.location.href = "index.html"
+        }
+
+        function completedPhase2() {
+            alert("🚀 Outstanding work, Data Structure Engineer! You've mastered arrays, stacks, queues, and hash tables. Your next mission: Phase 3 - Advanced Algorithms where we'll tackle sorting, recursion, and dynamic programming!");
+        }
+
+        // Initialize everything when the page loads
+        window.onload = init;
+
+    </script>
+</body>
+
+</html>
