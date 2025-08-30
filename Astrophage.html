@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Algorithmic Voyage - Phase 1: Basic Life Support Systems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .chapter {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .chapter h2 {
+            color: #4ecdc4;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pun-box {
+            background: linear-gradient(45deg, #ff6b6b20, #4ecdc420);
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
+
+        .interactive-demo {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block pre {
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+        .python { border-left: 4px solid #3776ab; }
+        .javascript { border-left: 4px solid #f7df1e; }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .visualization {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .array-container {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .array-element {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            min-width: 50px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .array-element.searching {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .array-element.found {
+            background: linear-gradient(45deg, #51e5ff, #52c4ff);
+            transform: scale(1.2);
+            box-shadow: 0 0 25px rgba(81, 229, 255, 0.8);
+        }
+
+        .complexity-meter {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .complexity-bar {
+            height: 20px;
+            background: linear-gradient(90deg, #4ecdc4 0%, #ff6b6b 100%);
+            border-radius: 10px;
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .complexity-indicator {
+            position: absolute;
+            top: -5px;
+            width: 4px;
+            height: 30px;
+            background: white;
+            border-radius: 2px;
+            transition: left 0.3s ease;
+        }
+
+        .step-counter {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #4ecdc4;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #e0e0e0;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+        }
+
+        .tab.active {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 The Algorithmic Voyage - Phase 1</h1>
+            <h2>"Basic Life Support Systems for Your Coding Journey"</h2>
+            <p><em>A Dr. Grace-Approved Guide to Not Dying from Algorithmic Ignorance</em></p>
+        </div>
+
+        <!-- Chapter 1: What IS an Algorithm? -->
+        <div class="chapter">
+            <h2>🧪 Chapter 1: What the Heck IS an Algorithm?</h2>
+            
+            <div class="pun-box">
+                <strong>Grace's Science Pun #1:</strong> "An algorithm is like the scientific method, but instead of discovering why Astrophage glows, you're discovering why your code doesn't work at 3 AM." 🔬
+            </div>
+
+            <p>Listen, if Grace can figure out how to communicate with an alien spider using basic math, you can understand what an algorithm is. Ready? Here we go:</p>
+
+            <p><strong>Algorithm (noun):</strong> A step-by-step recipe for solving a problem. Like Grace's approach to everything - methodical, logical, and with just enough trial-and-error to keep things interesting.</p>
+
+            <h3>🍜 Real-World Example: Making Instant Ramen (The Universal Algorithm)</h3>
+
+            <div class="interactive-demo">
+                <h4>The Ramen Algorithm:</h4>
+                <ol id="ramen-steps">
+                    <li>Boil water (2 cups)</li>
+                    <li>Add noodles to boiling water</li>
+                    <li>Cook for 3 minutes</li>
+                    <li>Add flavor packet</li>
+                    <li>Stir and serve</li>
+                    <li>Try not to burn your tongue (optional but recommended)</li>
+                </ol>
+                <button class="btn" onclick="demonstrateRamen()">Execute Ramen Algorithm</button>
+                <div id="ramen-result"></div>
+            </div>
+
+            <p>See? Every algorithm has the same basic structure: <strong>Input</strong> (hungry human, raw ingredients), <strong>Process</strong> (following steps), <strong>Output</strong> (edible food, hopefully).</p>
+        </div>
+
+        <!-- Chapter 2: Linear Search -->
+        <div class="chapter">
+            <h2>🔍 Chapter 2: Linear Search - "The Brute Force Space Expedition"</h2>
+            
+            <div class="pun-box">
+                <strong>Grace's Science Pun #2:</strong> "Linear search is like looking for intelligent life in the universe - you check every single planet until you find what you're looking for. Inefficient? Maybe. Thorough? Absolutely." 🛸
+            </div>
+
+            <p>Imagine Grace needs to find a specific tool in his lab. He could:</p>
+            <ol>
+                <li>Check the first drawer</li>
+                <li>If it's not there, check the second drawer</li>
+                <li>Keep checking until he finds it (or runs out of drawers)</li>
+            </ol>
+
+            <p>That's linear search! Simple, reliable, and about as subtle as a space explosion.</p>
+
+            <h3>🎮 Interactive Linear Search Demo</h3>
+            <div class="interactive-demo">
+                <p>Let's search for a number in Grace's "Lab Equipment Database":</p>
+                <input type="number" id="search-target" placeholder="Enter number to search for" min="1" max="20">
+                <button class="btn" onclick="startLinearSearch()">Start Search Mission</button>
+                <button class="btn" onclick="resetSearch()">Reset Lab</button>
+                
+                <div class="visualization">
+                    <div class="step-counter" id="step-counter">Steps taken: 0</div>
+                    <div class="array-container" id="array-display"></div>
+                    <div id="search-result"></div>
+                </div>
+
+                <div class="complexity-meter">
+                    <h4>⏱️ Time Complexity Meter</h4>
+                    <div class="complexity-bar">
+                        <div class="complexity-indicator" id="complexity-indicator"></div>
+                    </div>
+                    <p id="complexity-explanation">Best Case: O(1) - Found immediately | Worst Case: O(n) - Last item or not found</p>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('python-tab', this)">Python Implementation</button>
+                <button class="tab" onclick="showTab('javascript-tab', this)">JavaScript Implementation</button>
+            </div>
+
+            <div id="python-tab" class="tab-content active">
+                <div class="code-block python">
+                    <pre>
+def linear_search(arr, target):
+    """
+    Grace's Linear Search Algorithm
+    Like checking every sample in the lab until you find the right one
+    """
+    steps = 0
+    
+    for i in range(len(arr)):
+        steps += 1
+        print(f"Step {steps}: Checking position {i}, value: {arr[i]}")
+        
+        if arr[i] == target:
+            print(f"🎉 Found {target} at position {i}!")
+            print(f"Total steps: {steps}")
+            return i
+    
+    print(f"❌ {target} not found after {steps} steps")
+    return -1
+
+# Grace's Lab Equipment (represented as numbers for simplicity)
+lab_equipment = [15, 3, 8, 12, 9, 1, 7, 20, 4, 11]
+
+# Search for equipment item #7
+result = linear_search(lab_equipment, 7)
+                    </pre>
+                </div>
+            </div>
+
+            <div id="javascript-tab" class="tab-content">
+                <div class="code-block javascript">
+                    <pre>
+function linearSearch(arr, target) {
+    /*
+    Grace's Linear Search Algorithm
+    Like checking every sample in the lab until you find the right one
+    */
+    let steps = 0;
+    
+    for (let i = 0; i < arr.length; i++) {
+        steps++;
+        console.log(`Step ${steps}: Checking position ${i}, value: ${arr[i]}`);
+        
+        if (arr[i] === target) {
+            console.log(`🎉 Found ${target} at position ${i}!`);
+            console.log(`Total steps: ${steps}`);
+            return i;
+        }
+    }
+    
+    console.log(`❌ ${target} not found after ${steps} steps`);
+    return -1;
+}
+
+// Grace's Lab Equipment (represented as numbers for simplicity)
+const labEquipment = [15, 3, 8, 12, 9, 1, 7, 20, 4, 11];
+
+// Search for equipment item #7
+const result = linearSearch(labEquipment, 7);
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 3: Big O Notation -->
+        <div class="chapter">
+            <h2>📏 Chapter 3: Big O Notation - "The 'How Screwed Am I?' Meter"</h2>
+            
+            <div class="pun-box">
+                <strong>Grace's Science Pun #3:</strong> "Big O notation is like predicting how long it'll take to analyze all possible Astrophage mutations. O(1) means 'instant coffee fast', O(n²) means 'might as well learn the alien language while you wait.'" ☕
+            </div>
+
+            <p>Big O notation tells us how an algorithm's performance changes as the input gets bigger. Think of it as Grace's way of saying "How long will this take if I have to process the entire galaxy?"</p>
+
+            <div class="interactive-demo">
+                <h4>🏃‍♂️ Algorithm Speed Comparison</h4>
+                <p>Watch how different algorithms perform as we increase the data size:</p>
+                
+                <div class="visualization">
+                    <canvas id="big-o-chart" width="600" height="300"></canvas>
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <label for="input-size">Input Size: <span id="size-display">10</span></label>
+                    <input type="range" id="input-size" min="1" max="100" value="10" oninput="updateBigOChart()">
+                </div>
+
+                <div id="complexity-examples">
+                    <h4>Real-World Examples:</h4>
+                    <ul>
+                        <li><strong>O(1) - Constant:</strong> Getting Grace's coffee from the machine (same time, always)</li>
+                        <li><strong>O(n) - Linear:</strong> Reading every page in Grace's lab notebook</li>
+                        <li><strong>O(n²) - Quadratic:</strong> Comparing every Astrophage sample with every other sample</li>
+                        <li><strong>O(log n) - Logarithmic:</strong> Finding a specific star using a galactic coordinate system</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 4: Your Mission -->
+        <div class="chapter">
+            <h2>🎯 Your Mission, Should You Choose to Accept It</h2>
+            
+            <div class="pun-box">
+                <strong>Grace's Final Wisdom:</strong> "Remember, every expert was once a beginner. Even I had to learn how to not accidentally blow up my classroom experiments. You've got this!" 🧑‍🔬
+            </div>
+
+            <h3>✅ Phase 1 Checklist:</h3>
+            <ul>
+                <li>□ Understand what an algorithm actually is</li>
+                <li>□ Implement linear search in both Python and JavaScript</li>
+                <li>□ Grasp Big O notation basics (without crying)</li>
+                <li>□ Create your first algorithm visualization</li>
+                <li>□ Document your learning journey</li>
+            </ul>
+
+            <h3>🚀 Next Phase Preview:</h3>
+            <p>Coming up in Phase 2: "Navigation and Life Support" - where we'll explore data structures like arrays, stacks, and queues. Think of them as the different types of storage compartments on Grace's ship!</p>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="btn pulse" onclick="completedPhase1()">I'm Ready for Phase 2!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize the lab equipment array
+        let labEquipment = [15, 3, 8, 12, 9, 1, 7, 20, 4, 11];
+        let currentSearchIndex = -1;
+        let searchSteps = 0;
+        let searchInProgress = false;
+
+        // Initialize the page
+        function init() {
+            displayArray();
+            drawBigOChart();
+        }
+
+        // Display the array
+        function displayArray() {
+            const container = document.getElementById('array-display');
+            container.innerHTML = '';
+            
+            labEquipment.forEach((value, index) => {
+                const element = document.createElement('div');
+                element.className = 'array-element';
+                element.textContent = value;
+                element.id = `element-${index}`;
+                container.appendChild(element);
+            });
+        }
+
+        // Linear search visualization
+        async function startLinearSearch() {
+            if (searchInProgress) return;
+            
+            const target = parseInt(document.getElementById('search-target').value);
+            if (isNaN(target)) {
+                alert("Please enter a number to search for!");
+                return;
+            }
+
+            searchInProgress = true;
+            searchSteps = 0;
+            currentSearchIndex = -1;
+            
+            // Reset all elements
+            document.querySelectorAll('.array-element').forEach(el => {
+                el.classList.remove('searching', 'found');
+            });
+
+            document.getElementById('search-result').innerHTML = '';
+            
+            // Start the search animation
+            for (let i = 0; i < labEquipment.length; i++) {
+                searchSteps++;
+                currentSearchIndex = i;
+                
+                // Update step counter
+                document.getElementById('step-counter').textContent = `Steps taken: ${searchSteps}`;
+                
+                // Update complexity indicator
+                const percentage = (searchSteps / labEquipment.length) * 100;
+                document.getElementById('complexity-indicator').style.left = `${percentage}%`;
+                
+                // Highlight current element
+                const currentElement = document.getElementById(`element-${i}`);
+                currentElement.classList.add('searching');
+                
+                // Wait for animation
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                if (labEquipment[i] === target) {
+                    // Found it!
+                    currentElement.classList.remove('searching');
+                    currentElement.classList.add('found');
+                    
+                    document.getElementById('search-result').innerHTML = 
+                        `<h4>🎉 Success!</h4><p>Found ${target} at position ${i} in ${searchSteps} steps!</p>`;
+                    searchInProgress = false;
+                    return;
+                }
+                
+                // Remove searching highlight
+                currentElement.classList.remove('searching');
+            }
+            
+            // Not found
+            document.getElementById('search-result').innerHTML = 
+                `<h4>❌ Not Found</h4><p>${target} was not found after checking all ${searchSteps} positions.</p>`;
+            searchInProgress = false;
+        }
+
+        function resetSearch() {
+            if (searchInProgress) return;
+            
+            // Shuffle the array for a new challenge
+            labEquipment = [...labEquipment].sort(() => Math.random() - 0.5);
+            displayArray();
+            
+            document.getElementById('step-counter').textContent = 'Steps taken: 0';
+            document.getElementById('search-result').innerHTML = '';
+            document.getElementById('complexity-indicator').style.left = '0%';
+        }
+
+        // Tab functionality
+        function showTab(tabId, button) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab and mark button as active
+            document.getElementById(tabId).classList.add('active');
+            button.classList.add('active');
+        }
+
+        // Big O Chart
+        function drawBigOChart() {
+            const canvas = document.getElementById('big-o-chart');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const width = canvas.width;
+            const height = canvas.height;
+            const margin = 50;
+            
+            // Draw axes
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.beginPath();
+            ctx.moveTo(margin, height - margin);
+            ctx.lineTo(width - margin, height - margin);
+            ctx.moveTo(margin, height - margin);
+            ctx.lineTo(margin, margin);
+            ctx.stroke();
+            
+            // Labels
+            ctx.fillStyle = '#e0e0e0';
+            ctx.font = '12px Arial';
+            ctx.fillText('Input Size (n)', width / 2, height - 10);
+            ctx.save();
+            ctx.translate(20, height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('Time Complexity', 0, 0);
+            ctx.restore();
+            
+            const maxX = 50;
+            const maxY = 100;
+            
+            // Draw complexity functions
+            const functions = [
+                { name: 'O(1)', color: '#4ecdc4', fn: (x) => 5 },
+                { name: 'O(log n)', color: '#51e5ff', fn: (x) => Math.log2(x + 1) * 8 },
+                { name: 'O(n)', color: '#ffd93d', fn: (x) => x * 0.8 },
+                { name: 'O(n²)', color: '#ff6b6b', fn: (x) => (x * x) / 25 }
+            ];
+            
+            functions.forEach(func => {
+                ctx.strokeStyle = func.color;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                
+                for (let x = 1; x <= maxX; x++) {
+                    const screenX = margin + (x / maxX) * (width - 2 * margin);
+                    const y = func.fn(x);
+                    const screenY = height - margin - (y / maxY) * (height - 2 * margin);
+                    
+                    if (x === 1) {
+                        ctx.moveTo(screenX, screenY);
+                    } else {
+                        ctx.lineTo(screenX, screenY);
+                    }
+                }
+                ctx.stroke();
+                
+                // Legend
+                const legendY = margin + functions.indexOf(func) * 20;
+                ctx.fillStyle = func.color;
+                ctx.fillRect(width - 150, legendY, 15, 15);
+                ctx.fillStyle = '#e0e0e0';
+                ctx.fillText(func.name, width - 130, legendY + 12);
+            });
+        }
+
+        function updateBigOChart() {
+            const size = document.getElementById('input-size').value;
+            document.getElementById('size-display').textContent = size;
+            
+            // Update the chart highlighting current size
+            drawBigOChart();
+            
+            // Add vertical line at current size
+            const canvas = document.getElementById('big-o-chart');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const margin = 50;
+            
+            const x = margin + (size / 100) * (width - 2 * margin);
+            ctx.strokeStyle = '#ffffff80';
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(x, margin);
+            ctx.lineTo(x, height - margin);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        // Ramen algorithm demo
+        function demonstrateRamen() {
+            const steps = document.querySelectorAll('#ramen-steps li');
+            const result = document.getElementById('ramen-result');
+            
+            result.innerHTML = '<h4>🍜 Executing Ramen Algorithm...</h4>';
+            
+            let currentStep = 0;
+            const interval = setInterval(() => {
+                if (currentStep < steps.length) {
+                    steps[currentStep].style.background = 'linear-gradient(45deg, #4ecdc4, #44a08d)';
+                    steps[currentStep].style.padding = '10px';
+                    steps[currentStep].style.borderRadius = '5px';
+                    steps[currentStep].style.margin = '5px 0';
+                    steps[currentStep].style.color = 'white';
+                    currentStep++;
+                } else {
+                    clearInterval(interval);
+                    result.innerHTML = '<h4>🎉 Success!</h4><p>Ramen has been successfully created! Time complexity: O(delicious)</p>';
+                    
+                    // Reset after a few seconds
+                    setTimeout(() => {
+                        steps.forEach(step => {
+                            step.style.background = '';
+                            step.style.padding = '';
+                            step.style.borderRadius = '';
+                            step.style.margin = '';
+                            step.style.color = '';
+                        });
+                        result.innerHTML = '';
+                    }, 3000);
+                }
+            }, 1000);
+        }
+
+        function completedPhase1() {
+            alert("🚀 Congratulations, Space Cadet! You've completed Phase 1 of your algorithmic journey! Get ready for Phase 2: Navigation and Life Support Systems!");
+        }
+
+        // Initialize everything when the page loads
+        window.onload = init;
+    </script>
+</body>
+</html>
