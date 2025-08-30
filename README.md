@@ -2,7 +2,7 @@
 
 **Learn Data Structures and Algorithms through Interactive Tutorials, Visualizations, and Real-World Applications**
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-success)](https://hail-mary.github.io)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-success)](https://hail-mary-algorithm.vercel.app)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Python](https://img.shields.io/badge/Python-3.x-blue)](https://www.python.org/)
 [![Interactive](https://img.shields.io/badge/Learning-Interactive-brightgreen)](#features)
@@ -81,7 +81,7 @@ After completing The Algorithmic Voyage, you will:
 
 ## 🚀 Quick Start
 
-1. **Visit the Live Demo**: [https://hail-mary.github.io](https://hail-mary.github.io)
+1. **Visit the Live Demo**: [https://hail-mary.github.io](https://hail-mary-algorithm.vercel.app)
 2. **Start with Phase 1**: Learn algorithm basics
 3. **Progress through modules**: Interactive step-by-step learning
 4. **Practice with examples**: Hands-on coding exercises
@@ -170,7 +170,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Ready to start your algorithmic journey?** [Launch The Algorithmic Voyage →](https://hail-mary.github.io)
+**Ready to start your algorithmic journey?** [Launch The Algorithmic Voyage →](https://hail-mary-algorithm.vercel.app)
 
 > *"Every expert was once a beginner. Every pro was once an amateur. Every icon was once an unknown."* - Start your journey today!
 
