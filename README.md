@@ -130,8 +130,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## 📱 Social Media & Community
 
-- 🐦 **Twitter**: [@AlgorithmicVoyage](https://twitter.com/AlgorithmicVoyage) - Daily algorithm tips
-- 💼 **LinkedIn**: [Algorithm Learning Community](https://linkedin.com/company/algorithmic-voyage)
+- 🐦 **Twitter**: [@AlgorithmicVoyage](https://twitter.com/miracle1oladapo) - Daily algorithm tips
+- 💼 **LinkedIn**: [Algorithm Learning Community](https://linkedin.com/in/miracle-oladapo)
 - 📧 **Newsletter**: Subscribe for weekly DSA challenges
 - 💬 **Discussions**: GitHub Discussions for questions and community
 
