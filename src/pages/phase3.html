@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Algorithmic Voyage - Phase 3: Advanced Propulsion Systems</title>
+    <link rel="stylesheet" href="../styles/styles3.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 The Algorithmic Voyage - Phase 3</h1>
+            <h2>"Advanced Propulsion Systems"</h2>
+            <p><em>Mastering Sorting, Recursion, and Dynamic Programming</em></p>
+        </div>
+
+        <div style="text-align: left; margin: 30px 0;">
+            <button class="btn pulse" onclick="backtoPhase2()">
+                < Back to Phase 2</button>
+        </div>
+
+        <!-- Introduction -->
+        <div class="chapter">
+            <h2>⚡ Welcome to Advanced Algorithm Engineering</h2>
+
+            <div class="context-box">
+                <strong>What We're Building:</strong> In Phase 3, we're moving beyond basic operations to sophisticated
+                algorithms that power modern software. These are the techniques used in search engines, social media
+                feeds, GPS navigation, and artificial intelligence systems.
+            </div>
+
+            <div class="scientist-insight">
+                <strong>Scientific Methodology:</strong> "Advanced algorithms are like sophisticated scientific
+                instruments - each one designed for specific types of problems. A sorting algorithm organizes data like
+                organizing experimental results, recursion solves problems by breaking them into smaller versions of
+                themselves (like analyzing complex systems by understanding their components), and dynamic programming
+                remembers solutions to avoid redundant work (like keeping detailed lab notes to avoid repeating
+                experiments)." 🔬
+            </div>
+
+            <p>You've mastered the fundamentals - now it's time to build the powerful algorithms that can handle
+                real-world complexity. We'll explore three critical areas that form the backbone of computer science:
+            </p>
+
+            <ul>
+                <li><strong>Sorting Algorithms:</strong> Organizing data efficiently</li>
+                <li><strong>Recursion:</strong> Solving problems by breaking them down</li>
+                <li><strong>Dynamic Programming:</strong> Optimizing solutions through memory</li>
+            </ul>
+        </div>
+
+        <!-- Chapter 1: Sorting Algorithms -->
+        <div class="chapter">
+            <h2>📊 Chapter 1: Sorting Algorithms - "The Great Data Organization Project"</h2>
+
+            <div class="context-box">
+                <strong>Real-World Context:</strong> Imagine you're organizing a massive research database. You could
+                shuffle through papers randomly each time you need something, or you could organize them systematically
+                once and find anything instantly afterward. Sorting algorithms are different strategies for this
+                organization process.
+            </div>
+
+            <div class="scientist-insight">
+                <strong>Research Methodology:</strong> "Sorting is like organizing experimental data - there are many
+                approaches, each with trade-offs. Bubble sort is like carefully comparing adjacent samples and swapping
+                them if needed. Quick sort is like choosing a 'pivot sample' and grouping everything smaller on one
+                side, larger on the other. Merge sort splits everything into small groups, sorts those, then
+                systematically combines them back together." 📈
+            </div>
+
+            <p>Sorting algorithms arrange data in a specific order (usually ascending or descending). They're
+                fundamental because:</p>
+            <ul>
+                <li><strong>Searching becomes faster</strong> in sorted data</li>
+                <li><strong>Data analysis</strong> is easier with organized information</li>
+                <li><strong>Many other algorithms</strong> rely on sorted data as input</li>
+            </ul>
+
+            <h3>🧪 Interactive Sorting Laboratory</h3>
+            <div class="interactive-demo">
+                <p><strong>Research Data Sorting System:</strong></p>
+                <p><em>Watch different sorting algorithms organize numerical data with visual comparisons and
+                        swaps!</em></p>
+
+                <div class="control-panel">
+                    <select id="sort-algorithm">
+                        <option value="bubble">Bubble Sort (Simple & Visual)</option>
+                        <option value="quick">Quick Sort (Divide & Conquer)</option>
+                        <option value="merge">Merge Sort (Systematic Combining)</option>
+                        <option value="selection">Selection Sort (Find Minimum Repeatedly)</option>
+                    </select>
+                    <button class="btn" onclick="generateRandomData()">Generate Random Data</button>
+                    <button class="btn" onclick="startSorting()" id="sort-btn">Start Sorting</button>
+                    <button class="btn" onclick="resetSorting()">Reset</button>
+                </div>
+
+                <div class="speed-selector">
+                    <label for="animation-speed">Animation Speed:</label>
+                    <input type="range" id="animation-speed" min="50" max="1000" value="300" oninput="updateSpeed()">
+                    <span id="speed-display">Medium</span>
+                </div>
+
+                <div class="visualization">
+                    <div class="sorting-container" id="sorting-display">
+                        <!-- Sorting bars will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="stats-panel">
+                    <div class="stat-card">
+                        <div class="stat-value" id="comparisons-count">0</div>
+                        <div>Comparisons</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="swaps-count">0</div>
+                        <div>Swaps</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="time-complexity">-</div>
+                        <div>Time Complexity</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="algorithm-status">Ready</div>
+                        <div>Status</div>
+                    </div>
+                </div>
+
+                <div class="operation-log" id="sorting-log">
+                    <div>📊 Sorting Laboratory System Started</div>
+                    <div>📝 Sorting operations will be logged here...</div>
+                </div>
+
+                <h4>📊 Sorting Algorithm Comparison</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Algorithm</th>
+                        <th>Best Case</th>
+                        <th>Average Case</th>
+                        <th>Worst Case</th>
+                        <th>Scientific Analogy</th>
+                    </tr>
+                    <tr>
+                        <td>Bubble Sort</td>
+                        <td>O(n)</td>
+                        <td>O(n²)</td>
+                        <td>O(n²)</td>
+                        <td>"Compare adjacent samples, swap if needed - simple but slow"</td>
+                    </tr>
+                    <tr>
+                        <td>Quick Sort</td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>O(n²)</td>
+                        <td>"Pick a reference point, partition data around it"</td>
+                    </tr>
+                    <tr>
+                        <td>Merge Sort</td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>"Divide into small groups, sort each, then merge systematically"</td>
+                    </tr>
+                    <tr>
+                        <td>Selection Sort</td>
+                        <td>O(n²)</td>
+                        <td>O(n²)</td>
+                        <td>O(n²)</td>
+                        <td>"Find the smallest sample, place it first, repeat"</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Chapter 2: Recursion -->
+        <div class="chapter">
+            <h2>🔄 Chapter 2: Recursion - "The Self-Referencing Problem Solver"</h2>
+
+            <div class="context-box">
+                <strong>Real-World Context:</strong> Recursion is like looking into two mirrors facing each other - each
+                reflection contains a smaller version of the whole scene. In problem-solving, it means breaking a
+                complex problem into smaller versions of the same problem until you reach something simple enough to
+                solve directly.
+            </div>
+
+            <div class="scientist-insight">
+                <strong>Scientific Perspective:</strong> "Recursion is like the way we understand complex systems in
+                science - break them down into smaller, similar components. Studying a forest? Study individual trees.
+                Understanding trees? Study branches. Understanding branches? Study leaves. Each level is a smaller
+                version of the same type of investigation!" 🌳
+            </div>
+
+            <p>Recursion occurs when a function calls itself with a smaller version of the original problem. It's
+                powerful because:</p>
+            <ul>
+                <li><strong>Complex problems</strong> become manageable when broken down</li>
+                <li><strong>Elegant solutions</strong> for naturally recursive problems</li>
+                <li><strong>Foundation</strong> for advanced algorithms and data structures</li>
+            </ul>
+
+            <div class="context-box">
+                <strong>Key Concept:</strong> Every recursive solution needs two parts: a "base case" (the simplest
+                version that can be solved directly) and a "recursive case" (how to break the problem into smaller
+                pieces). Think of it like Russian nesting dolls - eventually you reach the smallest doll that can't be
+                opened further.
+            </div>
+
+            <h3>🧪 Interactive Recursion Laboratory</h3>
+            <div class="interactive-demo">
+                <p><strong>Factorial Calculation System:</strong></p>
+                <p><em>Watch how recursion breaks down complex calculations into simpler ones!</em></p>
+
+                <div class="context-box">
+                    <strong>Factorial Explanation:</strong> Factorial of n (written as n!) means multiplying all
+                    positive integers from 1 to n. For example: 5! = 5 × 4 × 3 × 2 × 1 = 120. Recursively: 5! = 5 × 4!,
+                    and 4! = 4 × 3!, etc.
+                </div>
+
+                <div class="control-panel">
+                    <input type="number" id="factorial-input" placeholder="Enter number (1-10)" min="1" max="10"
+                        value="5">
+                    <button class="btn" onclick="calculateFactorialRecursive()">Calculate Factorial</button>
+                    <button class="btn" onclick="resetRecursion()">Reset</button>
+                </div>
+
+                <div class="visualization">
+                    <div class="recursion-tree" id="recursion-display">
+                        <div style="color: #666; font-style: italic;">Recursion tree will appear here</div>
+                    </div>
+                </div>
+
+                <div class="stats-panel">
+                    <div class="stat-card">
+                        <div class="stat-value" id="recursion-calls">0</div>
+                        <div>Function Calls</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="recursion-depth">0</div>
+                        <div>Maximum Depth</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="final-result">-</div>
+                        <div>Final Result</div>
+                    </div>
+                </div>
+
+                <div class="operation-log" id="recursion-log">
+                    <div>🔄 Recursive Calculation System Started</div>
+                    <div>📝 Recursive calls will be logged here...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 3: Dynamic Programming -->
+        <div class="chapter">
+            <h2>🧠 Chapter 3: Dynamic Programming - "The Smart Memory System"</h2>
+
+            <div class="context-box">
+                <strong>Real-World Context:</strong> Imagine you're calculating travel costs between cities. Instead of
+                recalculating the same routes repeatedly, you write down the results and reuse them. Dynamic programming
+                applies this "smart note-taking" approach to programming - solve each subproblem once, remember the
+                answer, and reuse it whenever needed.
+            </div>
+
+            <div class="scientist-insight">
+                <strong>Research Efficiency:</strong> "Dynamic programming is like keeping detailed experimental logs.
+                If you've already tested how Chemical A reacts with Chemical B, you don't repeat that experiment - you
+                look up your notes! It transforms exponential problems into polynomial ones by remembering previous
+                work." 📝
+            </div>
+
+            <p>Dynamic Programming (DP) optimizes algorithms by storing solutions to subproblems and reusing them. Key
+                principles:</p>
+            <ul>
+                <li><strong>Optimal Substructure:</strong> Problem can be broken into smaller subproblems</li>
+                <li><strong>Overlapping Subproblems:</strong> Same subproblems appear multiple times</li>
+                <li><strong>Memoization:</strong> Store results to avoid recalculation</li>
+            </ul>
+
+            <div class="context-box">
+                <strong>Classic Example:</strong> The Fibonacci sequence (0, 1, 1, 2, 3, 5, 8, 13...) where each number
+                is the sum of the two preceding ones. Computing Fibonacci(10) recursively would recalculate smaller
+                values many times. DP calculates each value once and stores it.
+            </div>
+
+            <h3>🧪 Interactive Dynamic Programming Laboratory</h3>
+            <div class="interactive-demo">
+                <p><strong>Fibonacci Optimization System:</strong></p>
+                <p><em>Compare naive recursion vs. dynamic programming approach!</em></p>
+
+                <div class="control-panel">
+                    <input type="number" id="fibonacci-input" placeholder="Enter number (1-20)" min="1" max="20"
+                        value="8">
+                    <button class="btn" onclick="calculateFibonacci('recursive')">Naive Recursion</button>
+                    <button class="btn" onclick="calculateFibonacci('dp')">Dynamic Programming</button>
+                    <button class="btn" onclick="resetDP()">Reset</button>
+                </div>
+
+                <div class="visualization">
+                    <div class="dp-grid" id="dp-grid">
+                        <!-- DP table will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="stats-panel">
+                    <div class="stat-card">
+                        <div class="stat-value" id="dp-calculations">0</div>
+                        <div>Calculations</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="dp-time-saved">0%</div>
+                        <div>Time Saved</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="dp-result">-</div>
+                        <div>Result</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="dp-method">-</div>
+                        <div>Method Used</div>
+                    </div>
+                </div>
+
+                <div class="operation-log" id="dp-log">
+                    <div>🧠 Dynamic Programming System Started</div>
+                    <div>📝 Optimization operations will be logged here...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Implementation Section -->
+        <div class="chapter">
+            <h2>💻 Complete Implementation Examples</h2>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('sorting-python-tab', this)">Sorting Algorithms -
+                    Python</button>
+                <button class="tab" onclick="showTab('sorting-javascript-tab', this)">Sorting Algorithms -
+                    JavaScript</button>
+                <button class="tab" onclick="showTab('recursion-python-tab', this)">Recursion - Python</button>
+                <button class="tab" onclick="showTab('recursion-javascript-tab', this)">Recursion - JavaScript</button>
+                <button class="tab" onclick="showTab('dp-python-tab', this)">Dynamic Programming - Python</button>
+                <button class="tab" onclick="showTab('dp-javascript-tab', this)">Dynamic Programming -
+                    JavaScript</button>
+            </div>
+
+            <div id="sorting-python-tab" class="tab-content active">
+                <div class="code-block python">
+                    <pre>
+class AdvancedSortingLab:
+    """
+    Advanced Data Organization System
+    Multiple sorting algorithms for different research scenarios
+    """
+    
+    def __init__(self):
+        self.comparisons = 0
+        self.swaps = 0
+    
+    def reset_stats(self):
+        """Reset operation counters"""
+        self.comparisons = 0
+        self.swaps = 0
+    
+    def bubble_sort(self, data):
+        """
+        Bubble Sort - Compare adjacent elements, swap if needed
+        Time Complexity: O(n²) - Like carefully organizing samples one pair at a time
+        """
+        data = data.copy()  # Don't modify original
+        n = len(data)
+        
+        print(f"🫧 Starting Bubble Sort on {n} elements")
+        
+        for i in range(n):
+            # Flag to optimize - if no swaps occur, list is sorted
+            swapped = False
+            
+            for j in range(0, n - i - 1):
+                self.comparisons += 1
+                print(f"   Comparing {data[j]} and {data[j + 1]}")
+                
+                if data[j] > data[j + 1]:
+                    # Swap elements
+                    data[j], data[j + 1] = data[j + 1], data[j]
+                    self.swaps += 1
+                    swapped = True
+                    print(f"   ↔️ Swapped! New order: {data}")
+            
+            if not swapped:
+                print("   ✅ No swaps needed - data is sorted!")
+                break
+        
+        print(f"🎉 Bubble sort complete!")
+        print(f"📊 Stats: {self.comparisons} comparisons, {self.swaps} swaps")
+        return data
+    
+    def quick_sort(self, data):
+        """
+        Quick Sort - Divide and conquer approach
+        Time Complexity: O(n log n) average - Like systematic data partitioning
+        """
+        if len(data) <= 1:
+            return data
+        
+        self.comparisons += len(data) - 1
+        
+        pivot = data[len(data) // 2]  # Choose middle element as pivot
+        print(f"🎯 Pivot chosen: {pivot}")
+        
+        left = [x for x in data if x < pivot]
+        middle = [x for x in data if x == pivot]
+        right = [x for x in data if x > pivot]
+        
+        print(f"📊 Partitioned: Left{left} | Middle{middle} | Right{right}")
+        
+        return self.quick_sort(left) + middle + self.quick_sort(right)
+    
+    def merge_sort(self, data):
+        """
+        Merge Sort - Divide into smaller pieces, sort, then merge
+        Time Complexity: O(n log n) - Guaranteed performance
+        """
+        if len(data) <= 1:
+            return data
+        
+        mid = len(data) // 2
+        left_half = data[:mid]
+        right_half = data[mid:]
+        
+        print(f"📂 Dividing: {left_half} | {right_half}")
+        
+        # Recursively sort both halves
+        left_sorted = self.merge_sort(left_half)
+        right_sorted = self.merge_sort(right_half)
+        
+        # Merge the sorted halves
+        return self.merge(left_sorted, right_sorted)
+    
+    def merge(self, left, right):
+        """Merge two sorted arrays into one sorted array"""
+        result = []
+        i, j = 0, 0
+        
+        while i < len(left) and j < len(right):
+            self.comparisons += 1
+            if left[i] <= right[j]:
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+        
+        # Add remaining elements
+        result.extend(left[i:])
+        result.extend(right[j:])
+        
+        print(f"🔗 Merged: {result}")
+        return result
+
+# Example usage
+lab = AdvancedSortingLab()
+research_data = [64, 34, 25, 12, 22, 11, 90, 88, 76, 50]
+
+print("Original data:", research_data)
+lab.reset_stats()
+sorted_data = lab.bubble_sort(research_data)
+print("Final sorted data:", sorted_data)
+                    </pre>
+                </div>
+            </div>
+
+            <div id="sorting-javascript-tab" class="tab-content">
+                <div class="code-block javascript">
+                    <pre>
+class AdvancedSortingLab {
+    /**
+     * Advanced Data Organization System
+     * Multiple sorting algorithms for different research scenarios
+     */
+    
+    constructor() {
+        this.comparisons = 0;
+        this.swaps = 0;
+    }
+    
+    resetStats() {
+        // Reset operation counters
+        this.comparisons = 0;
+        this.swaps = 0;
+    }
+    
+    bubbleSort(data) {
+        // Bubble Sort - Compare adjacent elements, swap if needed
+        // Time Complexity: O(n²) - Like carefully organizing samples one pair at a time
+        data = [...data];  // Don't modify original
+        const n = data.length;
+        
+        console.log(`🫧 Starting Bubble Sort on ${n} elements`);
+        
+        for (let i = 0; i < n; i++) {
+            // Flag to optimize - if no swaps occur, list is sorted
+            let swapped = false;
+            
+            for (let j = 0; j < n - i - 1; j++) {
+                this.comparisons++;
+                console.log(`   Comparing ${data[j]} and ${data[j + 1]}`);
+                
+                if (data[j] > data[j + 1]) {
+                    // Swap elements
+                    [data[j], data[j + 1]] = [data[j + 1], data[j]];
+                    this.swaps++;
+                    swapped = true;
+                    console.log(`   ↔️ Swapped! New order: [${data.join(', ')}]`);
+                }
+            }
+            
+            if (!swapped) {
+                console.log("   ✅ No swaps needed - data is sorted!");
+                break;
+            }
+        }
+        
+        console.log(`🎉 Bubble sort complete!`);
+        console.log(`📊 Stats: ${this.comparisons} comparisons, ${this.swaps} swaps`);
+        return data;
+    }
+    
+    quickSort(data) {
+        // Quick Sort - Divide and conquer approach
+        // Time Complexity: O(n log n) average - Like systematic data partitioning
+        if (data.length <= 1) {
+            return data;
+        }
+        
+        this.comparisons += data.length - 1;
+        
+        const pivot = data[Math.floor(data.length / 2)];
+        console.log(`🎯 Pivot chosen: ${pivot}`);
+        
+        const left = data.filter(x => x < pivot);
+        const middle = data.filter(x => x === pivot);
+        const right = data.filter(x => x > pivot);
+        
+        console.log(`📊 Partitioned: Left[${left.join(',')}] | Middle[${middle.join(',')}] | Right[${right.join(',')}]`);
+        
+        return [...this.quickSort(left), ...middle, ...this.quickSort(right)];
+    }
+    
+    mergeSort(data) {
+        // Merge Sort - Divide into smaller pieces, sort, then merge
+        // Time Complexity: O(n log n) - Guaranteed performance
+        if (data.length <= 1) {
+            return data;
+        }
+        
+        const mid = Math.floor(data.length / 2);
+        const leftHalf = data.slice(0, mid);
+        const rightHalf = data.slice(mid);
+        
+        console.log(`📂 Dividing: [${leftHalf.join(',')}] | [${rightHalf.join(',')}]`);
+        
+        // Recursively sort both halves
+        const leftSorted = this.mergeSort(leftHalf);
+        const rightSorted = this.mergeSort(rightHalf);
+        
+        // Merge the sorted halves
+        return this.merge(leftSorted, rightSorted);
+    }
+    
+    merge(left, right) {
+        // Merge two sorted arrays into one sorted array
+        const result = [];
+        let i = 0, j = 0;
+        
+        while (i < left.length && j < right.length) {
+            this.comparisons++;
+            if (left[i] <= right[j]) {
+                result.push(left[i]);
+                i++;
+            } else {
+                result.push(right[j]);
+                j++;
+            }
+        }
+        
+        // Add remaining elements
+        result.push(...left.slice(i));
+        result.push(...right.slice(j));
+        
+        console.log(`🔗 Merged: [${result.join(', ')}]`);
+        return result;
+    }
+}
+
+// Example usage
+const lab = new AdvancedSortingLab();
+const researchData = [64, 34, 25, 12, 22, 11, 90, 88, 76, 50];
+
+console.log("Original data:", researchData);
+lab.resetStats();
+const sortedData = lab.bubbleSort(researchData);
+console.log("Final sorted data:", sortedData);
+                    </pre>
+                </div>
+            </div>
+
+            <div id="recursion-python-tab" class="tab-content">
+                <div class="code-block python">
+                    <pre>
+class RecursionLab:
+    """
+    Recursive Problem Solving System
+    Demonstrating how complex problems break down into simpler ones
+    """
+    
+    def __init__(self):
+        self.call_count = 0
+        self.max_depth = 0
+        self.current_depth = 0
+    
+    def factorial_recursive(self, n, depth=0):
+        """
+        Calculate factorial using recursion
+        factorial(n) = n * factorial(n-1)
+        Base case: factorial(0) = 1
+        """
+        self.call_count += 1
+        self.current_depth = depth
+        self.max_depth = max(self.max_depth, depth)
+        
+        print("  " * depth + f"📞 Call {self.call_count}: factorial({n})")
+        
+        # Base case - the simplest version we can solve directly
+        if n <= 1:
+            print("  " * depth + f"🎯 Base case reached: factorial({n}) = 1")
+            return 1
+        
+        # Recursive case - break problem into smaller version
+        print("  " * depth + f"🔄 Breaking down: {n} * factorial({n-1})")
+        result = n * self.factorial_recursive(n - 1, depth + 1)
+        
+        print("  " * depth + f"✅ Returning: factorial({n}) = {result}")
+        return result
+    
+    def fibonacci_recursive(self, n, depth=0):
+        """
+        Calculate Fibonacci number using naive recursion
+        fibonacci(n) = fibonacci(n-1) + fibonacci(n-2)
+        """
+        self.call_count += 1
+        self.current_depth = depth
+        self.max_depth = max(self.max_depth, depth)
+        
+        print("  " * depth + f"📞 Call {self.call_count}: fibonacci({n})")
+        
+        # Base cases
+        if n <= 1:
+            print("  " * depth + f"🎯 Base case: fibonacci({n}) = {n}")
+            return n
+        
+        # Recursive case
+        print("  " * depth + f"🔄 Breaking: fib({n-1}) + fib({n-2})")
+        result = self.fibonacci_recursive(n - 1, depth + 1) + self.fibonacci_recursive(n - 2, depth + 1)
+        
+        print("  " * depth + f"✅ Returning: fibonacci({n}) = {result}")
+        return result
+    
+    def reset_stats(self):
+        """Reset recursion statistics"""
+        self.call_count = 0
+        self.max_depth = 0
+        self.current_depth = 0
+
+# Example: Factorial calculation
+print("🧪 Factorial Recursion Experiment")
+lab = RecursionLab()
+result = lab.factorial_recursive(5)
+print(f"\n🎉 Final Result: 5! = {result}")
+print(f"📊 Statistics: {lab.call_count} function calls, max depth: {lab.max_depth}")
+
+# Example: Fibonacci (warning: gets slow with large numbers!)
+print("\n🔢 Fibonacci Recursion Experiment")
+lab.reset_stats()
+fib_result = lab.fibonacci_recursive(6)
+print(f"\n🎉 Final Result: fibonacci(6) = {fib_result}")
+print(f"📊 Statistics: {lab.call_count} function calls, max depth: {lab.max_depth}")
+                    </pre>
+                </div>
+            </div>
+
+            <div id="recursion-javascript-tab" class="tab-content">
+                <div class="code-block javascript">
+                    <pre>
+class RecursionLab {
+    /**
+     * Recursive Problem Solving System
+     * Demonstrating how complex problems break down into simpler ones
+     */
+    
+    constructor() {
+        this.callCount = 0;
+        this.maxDepth = 0;
+        this.currentDepth = 0;
+    }
+    
+    factorialRecursive(n, depth = 0) {
+        // Calculate factorial using recursion
+        // factorial(n) = n * factorial(n-1)
+        // Base case: factorial(0) = 1
+        this.callCount++;
+        this.currentDepth = depth;
+        this.maxDepth = Math.max(this.maxDepth, depth);
+        
+        console.log("  ".repeat(depth) + `📞 Call ${this.callCount}: factorial(${n})`);
+        
+        // Base case - the simplest version we can solve directly
+        if (n <= 1) {
+            console.log("  ".repeat(depth) + `🎯 Base case reached: factorial(${n}) = 1`);
+            return 1;
+        }
+        
+        // Recursive case - break problem into smaller version
+        console.log("  ".repeat(depth) + `🔄 Breaking down: ${n} * factorial(${n-1})`);
+        const result = n * this.factorialRecursive(n - 1, depth + 1);
+        
+        console.log("  ".repeat(depth) + `✅ Returning: factorial(${n}) = ${result}`);
+        return result;
+    }
+    
+    fibonacciRecursive(n, depth = 0) {
+        // Calculate Fibonacci number using naive recursion
+        // fibonacci(n) = fibonacci(n-1) + fibonacci(n-2)
+        this.callCount++;
+        this.currentDepth = depth;
+        this.maxDepth = Math.max(this.maxDepth, depth);
+        
+        console.log("  ".repeat(depth) + `📞 Call ${this.callCount}: fibonacci(${n})`);
+        
+        // Base cases
+        if (n <= 1) {
+            console.log("  ".repeat(depth) + `🎯 Base case: fibonacci(${n}) = ${n}`);
+            return n;
+        }
+        
+        // Recursive case
+        console.log("  ".repeat(depth) + `🔄 Breaking: fib(${n-1}) + fib(${n-2})`);
+        const result = this.fibonacciRecursive(n - 1, depth + 1) + this.fibonacciRecursive(n - 2, depth + 1);
+        
+        console.log("  ".repeat(depth) + `✅ Returning: fibonacci(${n}) = ${result}`);
+        return result;
+    }
+    
+    resetStats() {
+        // Reset recursion statistics
+        this.callCount = 0;
+        this.maxDepth = 0;
+        this.currentDepth = 0;
+    }
+}
+
+// Example: Factorial calculation
+console.log("🧪 Factorial Recursion Experiment");
+const lab = new RecursionLab();
+const result = lab.factorialRecursive(5);
+console.log(`\n🎉 Final Result: 5! = ${result}`);
+console.log(`📊 Statistics: ${lab.callCount} function calls, max depth: ${lab.maxDepth}`);
+
+// Example: Fibonacci (warning: gets slow with large numbers!)
+console.log("\n🔢 Fibonacci Recursion Experiment");
+lab.resetStats();
+const fibResult = lab.fibonacciRecursive(6);
+console.log(`\n🎉 Final Result: fibonacci(6) = ${fibResult}`);
+console.log(`📊 Statistics: ${lab.callCount} function calls, max depth: ${lab.maxDepth}`);
+                    </pre>
+                </div>
+            </div>
+
+            <div id="dp-python-tab" class="tab-content">
+                <div class="code-block python">
+                    <pre>
+class DynamicProgrammingLab:
+    """
+    Advanced Optimization System
+    Using memory to avoid redundant calculations
+    """
+    
+    def __init__(self):
+        self.memo = {}  # Memory storage for computed results
+        self.calculations = 0
+    
+    def fibonacci_dp_memoization(self, n):
+        """
+        Fibonacci with memoization (top-down DP)
+        Store results to avoid recalculating same values
+        """
+        if n in self.memo:
+            print(f"💾 Using stored result: fibonacci({n}) = {self.memo[n]}")
+            return self.memo[n]
+        
+        self.calculations += 1
+        print(f"🔄 Calculating fibonacci({n})")
+        
+        if n <= 1:
+            result = n
+        else:
+            result = self.fibonacci_dp_memoization(n - 1) + self.fibonacci_dp_memoization(n - 2)
+        
+        # Store result for future use
+        self.memo[n] = result
+        print(f"💾 Stored: fibonacci({n}) = {result}")
+        return result
+    
+    def fibonacci_dp_tabulation(self, n):
+        """
+        Fibonacci with tabulation (bottom-up DP)
+        Build solution from smallest subproblems upward
+        """
+        if n <= 1:
+            return n
+        
+        # Create table to store results
+        dp_table = [0] * (n + 1)
+        dp_table[0] = 0
+        dp_table[1] = 1
+        
+        print("🏗️ Building solution bottom-up:")
+        print(f"dp[0] = {dp_table[0]}, dp[1] = {dp_table[1]}")
+        
+        for i in range(2, n + 1):
+            self.calculations += 1
+            dp_table[i] = dp_table[i - 1] + dp_table[i - 2]
+            print(f"dp[{i}] = dp[{i-1}] + dp[{i-2}] = {dp_table[i-1]} + {dp_table[i-2]} = {dp_table[i]}")
+        
+        print(f"📊 Final DP table: {dp_table}")
+        return dp_table[n]
+    
+    def longest_common_subsequence(self, text1, text2):
+        """
+        Find longest common subsequence using DP
+        Classic example of 2D dynamic programming
+        """
+        m, n = len(text1), len(text2)
+        
+        # Create 2D DP table
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        
+        print(f"🔤 Finding LCS between '{text1}' and '{text2}'")
+        
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                self.calculations += 1
+                
+                if text1[i-1] == text2[j-1]:
+                    # Characters match - extend previous LCS
+                    dp[i][j] = dp[i-1][j-1] + 1
+                    print(f"✅ Match at ({i},{j}): '{text1[i-1]}' - LCS length: {dp[i][j]}")
+                else:
+                    # No match - take maximum from adjacent cells
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+                    print(f"❌ No match at ({i},{j}): taking max({dp[i-1][j]}, {dp[i][j-1]}) = {dp[i][j]}")
+        
+        return dp[m][n]
+    
+    def reset_lab(self):
+        """Reset all lab statistics and memory"""
+        self.memo = {}
+        self.calculations = 0
+        print("🔄 Laboratory reset complete")
+
+# Example: Fibonacci comparison
+print("🧪 Dynamic Programming vs Naive Recursion")
+dp_lab = DynamicProgrammingLab()
+
+print("\n📈 Method 1: Memoization (Top-down)")
+dp_lab.reset_lab()
+result_memo = dp_lab.fibonacci_dp_memoization(8)
+calc_memo = dp_lab.calculations
+print(f"Result: {result_memo}, Calculations: {calc_memo}")
+
+print("\n📊 Method 2: Tabulation (Bottom-up)")
+dp_lab.reset_lab()
+result_tab = dp_lab.fibonacci_dp_tabulation(8)
+calc_tab = dp_lab.calculations
+print(f"Result: {result_tab}, Calculations: {calc_tab}")
+
+print("\n🔤 Bonus: Longest Common Subsequence")
+dp_lab.reset_lab()
+lcs_length = dp_lab.longest_common_subsequence("ABCDGH", "AEDFHR")
+print(f"LCS length: {lcs_length}, Total calculations: {dp_lab.calculations}")
+                    </pre>
+                </div>
+            </div>
+
+            <div id="dp-javascript-tab" class="tab-content">
+                <div class="code-block javascript">
+                    <pre>
+class DynamicProgrammingLab {
+    /**
+     * Advanced Optimization System
+     * Using memory to avoid redundant calculations
+     */
+    
+    constructor() {
+        this.memo = new Map();  // Memory storage for computed results
+        this.calculations = 0;
+    }
+    
+    fibonacciDPMemoization(n) {
+        // Fibonacci with memoization (top-down DP)
+        // Store results to avoid recalculating same values
+        if (this.memo.has(n)) {
+            console.log(`💾 Using stored result: fibonacci(${n}) = ${this.memo.get(n)}`);
+            return this.memo.get(n);
+        }
+        
+        this.calculations++;
+        console.log(`🔄 Calculating fibonacci(${n})`);
+        
+        let result;
+        if (n <= 1) {
+            result = n;
+        } else {
+            result = this.fibonacciDPMemoization(n - 1) + this.fibonacciDPMemoization(n - 2);
+        }
+        
+        // Store result for future use
+        this.memo.set(n, result);
+        console.log(`💾 Stored: fibonacci(${n}) = ${result}`);
+        return result;
+    }
+    
+    fibonacciDPTabulation(n) {
+        // Fibonacci with tabulation (bottom-up DP)
+        // Build solution from smallest subproblems upward
+        if (n <= 1) {
+            return n;
+        }
+        
+        // Create table to store results
+        const dpTable = new Array(n + 1);
+        dpTable[0] = 0;
+        dpTable[1] = 1;
+        
+        console.log("🏗️ Building solution bottom-up:");
+        console.log(`dp[0] = ${dpTable[0]}, dp[1] = ${dpTable[1]}`);
+        
+        for (let i = 2; i <= n; i++) {
+            this.calculations++;
+            dpTable[i] = dpTable[i - 1] + dpTable[i - 2];
+            console.log(`dp[${i}] = dp[${i-1}] + dp[${i-2}] = ${dpTable[i-1]} + ${dpTable[i-2]} = ${dpTable[i]}`);
+        }
+        
+        console.log(`📊 Final DP table: [${dpTable.join(', ')}]`);
+        return dpTable[n];
+    }
+    
+    longestCommonSubsequence(text1, text2) {
+        // Find longest common subsequence using DP
+        // Classic example of 2D dynamic programming
+        const m = text1.length;
+        const n = text2.length;
+        
+        // Create 2D DP table
+        const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(0));
+        
+        console.log(`🔤 Finding LCS between '${text1}' and '${text2}'`);
+        
+        for (let i = 1; i <= m; i++) {
+            for (let j = 1; j <= n; j++) {
+                this.calculations++;
+                
+                if (text1[i-1] === text2[j-1]) {
+                    // Characters match - extend previous LCS
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                    console.log(`✅ Match at (${i},${j}): '${text1[i-1]}' - LCS length: ${dp[i][j]}`);
+                } else {
+                    // No match - take maximum from adjacent cells
+                    dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+                    console.log(`❌ No match at (${i},${j}): taking max(${dp[i-1][j]}, ${dp[i][j-1]}) = ${dp[i][j]}`);
+                }
+            }
+        }
+        
+        return dp[m][n];
+    }
+    
+    resetLab() {
+        // Reset all lab statistics and memory
+        this.memo.clear();
+        this.calculations = 0;
+        console.log("🔄 Laboratory reset complete");
+    }
+}
+
+// Example: Fibonacci comparison
+console.log("🧪 Dynamic Programming vs Naive Recursion");
+const dpLab = new DynamicProgrammingLab();
+
+console.log("\n📈 Method 1: Memoization (Top-down)");
+dpLab.resetLab();
+const resultMemo = dpLab.fibonacciDPMemoization(8);
+const calcMemo = dpLab.calculations;
+console.log(`Result: ${resultMemo}, Calculations: ${calcMemo}`);
+
+console.log("\n📊 Method 2: Tabulation (Bottom-up)");
+dpLab.resetLab();
+const resultTab = dpLab.fibonacciDPTabulation(8);
+const calcTab = dpLab.calculations;
+console.log(`Result: ${resultTab}, Calculations: ${calcTab}`);
+
+console.log("\n🔤 Bonus: Longest Common Subsequence");
+dpLab.resetLab();
+const lcsLength = dpLab.longestCommonSubsequence("ABCDGH", "AEDFHR");
+console.log(`LCS length: ${lcsLength}, Total calculations: ${dpLab.calculations}`);
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Chapter -->
+        <div class="chapter">
+            <h2>🎖️ Phase 3 Mastery: Advanced Algorithm Engineer</h2>
+
+            <div class="scientist-insight">
+                <strong>Advanced Research Conclusion:</strong> "You've now mastered the core algorithms that power most
+                modern software systems. Sorting algorithms organize the world's data, recursion enables complex problem
+                decomposition, and dynamic programming optimizes solutions that would otherwise be impossible to compute
+                efficiently. These aren't just academic exercises - they're the tools that make modern technology
+                possible!" 🏆
+            </div>
+
+            <h3>✅ Phase 3 Advanced Mastery Checklist:</h3>
+            <ul>
+                <li>□ Understand multiple sorting strategies and their trade-offs</li>
+                <li>□ Master recursive thinking and implementation patterns</li>
+                <li>□ Apply dynamic programming to optimization problems</li>
+                <li>□ Analyze algorithm efficiency in complex scenarios</li>
+                <li>□ Choose appropriate algorithms for real-world applications</li>
+                <li>□ Implement advanced algorithms in multiple programming languages</li>
+            </ul>
+
+            <h3>🚀 Real-World Applications You Now Understand:</h3>
+            <ul>
+                <li><strong>Search Engines:</strong> Use sophisticated sorting and searching algorithms</li>
+                <li><strong>Social Media Feeds:</strong> Dynamic programming for personalization algorithms</li>
+                <li><strong>GPS Navigation:</strong> Recursive pathfinding algorithms</li>
+                <li><strong>Database Systems:</strong> Advanced sorting for query optimization</li>
+                <li><strong>Machine Learning:</strong> Recursive algorithms for decision trees</li>
+                <li><strong>Game Development:</strong> Dynamic programming for AI decision making</li>
+            </ul>
+
+            <h3>🎓 Your Next Steps as an Algorithm Expert:</h3>
+            <div class="context-box">
+                <strong>Congratulations!</strong> You've completed a comprehensive journey through fundamental
+                algorithms and data structures. You now have the tools to tackle complex programming challenges, excel
+                in technical interviews, and build efficient software systems.
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="btn" onclick="celebrateCompletion()"
+                    style="font-size: 1.2em; padding: 20px 40px; background: linear-gradient(45deg, #51e5ff, #4ecdc4);">🎉
+                    I've Mastered Advanced Algorithms!</button>
+            </div>
+
+            <h3>🔮 Bonus Challenges:</h3>
+            <ul>
+                <li>Build a complete sorting algorithm race with all methods</li>
+                <li>Create a recursive fractal visualizer</li>
+                <li>Implement a dynamic programming solution to the "traveling salesman problem"</li>
+                <li>Design your own algorithm for a real-world problem you care about</li>
+            </ul>
+        </div>
+    </div>
+    <script src="../scripts/algorithm3.js"></script>
+</body>
+
+</html>
